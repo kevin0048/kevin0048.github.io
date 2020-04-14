@@ -5,9 +5,9 @@
   <subtitle>机器不学习</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
-  <updated>2020-04-14T06:08:41.747Z</updated>
-  <id>http://yoursite.com/</id>
+  <link href="https://kevin0048.github.io/"/>
+  <updated>2020-04-14T12:45:30.944Z</updated>
+  <id>https://kevin0048.github.io/</id>
   
   <author>
     <name>朱文</name>
@@ -17,27 +17,27 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>page</title>
-    <link href="http://yoursite.com/2020/04/14/page/"/>
-    <id>http://yoursite.com/2020/04/14/page/</id>
-    <published>2020-04-14T06:08:41.747Z</published>
-    <updated>2020-04-14T06:08:41.747Z</updated>
+    <title>这是一片很长的文章</title>
+    <link href="https://kevin0048.github.io/2020/04/14/%E8%BF%99%E6%98%AF%E4%B8%80%E7%AF%87%E5%BE%88%E9%95%BF%E7%9A%84%E6%96%87%E7%AB%A0/"/>
+    <id>https://kevin0048.github.io/2020/04/14/%E8%BF%99%E6%98%AF%E4%B8%80%E7%AF%87%E5%BE%88%E9%95%BF%E7%9A%84%E6%96%87%E7%AB%A0/</id>
+    <published>2020-04-14T06:06:19.000Z</published>
+    <updated>2020-04-14T12:45:30.944Z</updated>
     
-    <content type="html"><![CDATA[<p>Welcome~</p><p>$$<br>\begin{equation}<br>a=\frac{1}{2}<br>\end{equation}<br>$$</p><hr><p>title: page<br>date: 2020-04-14 14:06:19<br>tags:</p><hr>]]></content>
+    <content type="html"><![CDATA[<p>Welcome~</p><h1 id="这是第一段"><a href="#这是第一段" class="headerlink" title="这是第一段"></a>这是第一段</h1><h2 id="这是一小段"><a href="#这是一小段" class="headerlink" title="这是一小段"></a>这是一小段</h2><h1 id="这又是一大段"><a href="#这又是一大段" class="headerlink" title="这又是一大段"></a>这又是一大段</h1><p>很长的文章</p><p>我在这里写个公式 $a=\frac{1}{2}$</p><p>我在这里又写了个<a href="http://www.baidu.com" target="_blank" rel="noopener">链接</a></p><p>我在这里写个代码</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>+<span class="number">1</span></span><br></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
-      
-      
-        &lt;p&gt;Welcome~&lt;/p&gt;
-&lt;p&gt;$$&lt;br&gt;\begin{equation}&lt;br&gt;a=\frac{1}{2}&lt;br&gt;\end{equation}&lt;br&gt;$$&lt;/p&gt;
-&lt;hr&gt;
-&lt;p&gt;title: page&lt;br&gt;date: 2020-04-14 14:06:19&lt;br&gt;t
-      
+      这是一片很长的文章
     
     </summary>
     
     
+      <category term="欢迎" scheme="https://kevin0048.github.io/categories/%E6%AC%A2%E8%BF%8E/"/>
+    
+    
+      <category term="这是测试tag1" scheme="https://kevin0048.github.io/tags/%E8%BF%99%E6%98%AF%E6%B5%8B%E8%AF%95tag1/"/>
+    
+      <category term="这是测试tag2" scheme="https://kevin0048.github.io/tags/%E8%BF%99%E6%98%AF%E6%B5%8B%E8%AF%95tag2/"/>
     
   </entry>
   
