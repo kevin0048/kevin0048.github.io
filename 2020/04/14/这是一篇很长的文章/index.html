@@ -20,16 +20,16 @@
     var CONFIG = {"hostname":"kevin0048.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="这是一片很长的文章">
+  <meta name="description" content="这是一片很长的文章的description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="这是一片很长的文章">
 <meta property="og:url" content="https://kevin0048.github.io/2020/04/14/%E8%BF%99%E6%98%AF%E4%B8%80%E7%AF%87%E5%BE%88%E9%95%BF%E7%9A%84%E6%96%87%E7%AB%A0/index.html">
 <meta property="og:site_name" content="kevin&#39;s blog">
-<meta property="og:description" content="这是一片很长的文章">
+<meta property="og:description" content="这是一片很长的文章的description">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://upcdn.mpres.51vv.com/article/image/2ae8d8e2187be4131135645e19cbc2c9.jpg">
 <meta property="article:published_time" content="2020-04-14T06:06:19.000Z">
-<meta property="article:modified_time" content="2020-04-15T03:37:42.269Z">
+<meta property="article:modified_time" content="2020-04-15T06:23:10.468Z">
 <meta property="article:author" content="朱文">
 <meta property="article:tag" content="这是测试tag1">
 <meta property="article:tag" content="这是测试tag2">
@@ -208,7 +208,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-15 11:37:42" itemprop="dateModified" datetime="2020-04-15T11:37:42+08:00">2020-04-15</time>
+                <time title="修改时间：2020-04-15 14:23:10" itemprop="dateModified" datetime="2020-04-15T14:23:10+08:00">2020-04-15</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -245,7 +245,7 @@
               <span class="post-meta-item-text">阅读次数：</span>
               <span id="busuanzi_value_page_pv"></span>
             </span>
-            <div class="post-description">这是一片很长的文章</div>
+            <div class="post-description">这是一片很长的文章的description</div>
 
         </div>
       </header>
@@ -282,6 +282,26 @@
     
     
     
+        <div class="reward-container">
+  <div>您的支持将鼓励我继续创作.</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.jpg" alt="朱文 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="朱文 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
 
       <footer class="post-footer">
           <div class="post-tags">
@@ -311,6 +331,7 @@
 
           </div>
           
+    <div class="comments" id="gitalk-container"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -565,6 +586,26 @@
     
 
   
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '2ef37a42b4dcad32d4f2',
+      clientSecret: 'f1e80bf0baa00e57bbdac388e3cc4cc81d9255be',
+      repo        : 'gitment-comments',
+      owner       : 'kevin0048',
+      admin       : ['kevin0048'],
+      id          : 'f22bd3458200b4c7d54d159058106179',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
 
 </body>
 </html>
