@@ -1,36 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search> 
-  
-  
-    
-    <entry>
-      <title>模型评估方法</title>
-      <link href="/2020/04/16/%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0%E6%96%B9%E6%B3%95/"/>
-      <url>/2020/04/16/%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0%E6%96%B9%E6%B3%95/</url>
-      
-        <content type="html"><![CDATA[<h1 id="Classification"><a href="#Classification" class="headerlink" title="Classification"></a>Classification</h1><h2 id="混淆矩阵"><a href="#混淆矩阵" class="headerlink" title="混淆矩阵"></a>混淆矩阵</h2><div align=center>    <img width="800" style="border-radius: 0.3125em;    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);"     src="/imgs/confusion_matrix.png" alt="confuse matrix">     <br>    <div style="color:orange; border-bottom: 1px solid #d9d9d9;    display: inline-block;    color: #999;    padding: 2px;"><a title="图1 混淆矩阵" href="https://en.wikipedia.org/wiki/Confusion_matrix" target="_blank" rel="noopener"> 图1 混淆矩阵 </a></div></div><ol><li>True/False: 预测的结果是否正确；</li><li>positive/negative: 预测结果，预测为正例还是反例</li><li>由混淆矩阵延伸出来的评价指标有：Accuracy, Precision, Recall, F1, TPR, FPR, ROC/AUC等</li><li>对于多分类问题，通常计算每一个类别的混淆矩阵（P：属于A类，N：不属于A类），然后可以把每一类的指标聚合起来，求出一个总的指标</li></ol><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Examples</span></span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> confusion_matrix</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">y = np.random.randint(<span class="number">0</span>, <span class="number">2</span>, <span class="number">20</span>)</span><br><span class="line">pred = np.random.randint(<span class="number">0</span>, <span class="number">2</span>, <span class="number">20</span>)</span><br><span class="line">print(confusion_matrix(y, pred))</span><br></pre></td></tr></table></figure><h2 id="Accuracy"><a href="#Accuracy" class="headerlink" title="Accuracy"></a>Accuracy</h2><p><strong>精度</strong>：样本预测正确的数量除以总样本数</p><p><strong>计算方法</strong>：$y_i$是第$i$个样本的标签，$\hat{y_i}$是第$i$个样本的预测标签，$n$是样本数量<br>$$<br>\text{accuracy}(y,\hat{y}) = \frac{1}{n}\sum\limits_{i=1}^{n}1(\hat{y}_i=y_i)<br>$$</p><p><strong>使用混淆矩阵计算</strong>:<br>$$<br>\text{accuracy}=\frac{\text{TP}+\text{TN}}{\text{TP}+\text{TN}+\text{FP}+\text{FN}}<br>$$</p><p><strong>缺点</strong>:</p><ol><li>在<strong>样本不平衡的条件</strong>下，准确率不能很好的衡量模型的效果，比如正样本占90%，负样本10%，如果模型把全部样本都判断为正样本，那么模型的准确率也有90%，可能也会觉得很好</li></ol><p><strong>特点</strong>:</p><ol><li>如果一个样本对应多个标签，那么可以设置<strong>样本的所有标签都对的上才表示分类正确</strong>的规则来计算accuracy</li></ol><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Examples</span></span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> accuracy_score</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment"># single label</span></span><br><span class="line">y = np.random.randint(<span class="number">0</span>, <span class="number">2</span>, <span class="number">20</span>)</span><br><span class="line">pred = np.random.randint(<span class="number">0</span>, <span class="number">2</span>, <span class="number">20</span>)</span><br><span class="line">print(accuracy_score(y, pred))</span><br><span class="line"></span><br><span class="line"><span class="comment"># multilabel</span></span><br><span class="line">print(accuracy_score(np.array([[<span class="number">1</span>,<span class="number">1</span>], [<span class="number">0</span>, <span class="number">0</span>]]), np.ones((<span class="number">2</span>, <span class="number">2</span>))))</span><br></pre></td></tr></table></figure><h1 id="Clustering"><a href="#Clustering" class="headerlink" title="Clustering"></a>Clustering</h1><h1 id="Regression"><a href="#Regression" class="headerlink" title="Regression"></a>Regression</h1><h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ol><li>混淆矩阵：<a href="https://en.wikipedia.org/wiki/Confusion_matrix" target="_blank" rel="noopener">维基百科</a></li><li><a href="https://scikit-learn.org/stable/modules/model_evaluation.html" target="_blank" rel="noopener">scikit-learn</a></li></ol>]]></content>
-      
-      
+<search>
+  <entry>
+    <title>模型评估方法</title>
+    <url>/2020/04/16/%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<h1 id="Classification"><a href="#Classification" class="headerlink" title="Classification"></a>Classification</h1><h2 id="混淆矩阵"><a href="#混淆矩阵" class="headerlink" title="混淆矩阵"></a>混淆矩阵</h2><div align=center>
+    <img width="800" align="center"
+    src="/imgs/confusion_matrix.png" alt="confuse matrix"> 
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;"><a title="图1 混淆矩阵" href="https://en.wikipedia.org/wiki/Confusion_matrix" target="_blank" rel="noopener"> 图1 混淆矩阵 </a></div>
+</div>
+
+
+<ol>
+<li>True/False: 预测的结果是否正确。</li>
+<li>positive/negative: 预测结果，预测为正例还是反例。</li>
+<li>由混淆矩阵延伸出来的评价指标有：Accuracy, Precision, Recall, F1, TPR, FPR, ROC/AUC等。</li>
+<li>对于多分类问题，通常计算每一个类别的混淆矩阵（P：属于A类，N：不属于A类），然后可以把每一类的指标聚合起来，求出一个总的指标。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Examples</span></span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> confusion_matrix</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">y = np.random.randint(<span class="number">0</span>, <span class="number">2</span>, <span class="number">20</span>)</span><br><span class="line">pred = np.random.randint(<span class="number">0</span>, <span class="number">2</span>, <span class="number">20</span>)</span><br><span class="line">print(confusion_matrix(y, pred))</span><br></pre></td></tr></table></figure>
+
+<h2 id="Accuracy"><a href="#Accuracy" class="headerlink" title="Accuracy"></a>Accuracy</h2><p>精度，样本预测正确的数量除以总样本数。</p>
+<p><strong>计算方法</strong>：$y_i$是第$i$个样本的标签，$\hat{y_i}$是第$i$个样本的预测标签，$n$是样本数量<br>$$<br>\text{accuracy}(y,\hat{y}) = \frac{1}{n}\sum\limits_{i=1}^{n}1(\hat{y}_i=y_i)<br>$$</p>
+<p><strong>使用混淆矩阵计算</strong>:<br>$$<br>\text{accuracy}=\frac{\text{TP}+\text{TN}}{\text{TP}+\text{TN}+\text{FP}+\text{FN}}<br>$$</p>
+<p><strong>多标签计算</strong>:</p>
+<ol>
+<li>如果一个样本对应多个标签，那么可以设置<strong>样本的所有标签都对的上才表示分类正确</strong>的规则来计算accuracy。</li>
+</ol>
+<p><strong>缺点</strong>:</p>
+<ol>
+<li>在<strong>样本不平衡的条件</strong>下，准确率不能很好的衡量模型的效果，比如正样本占90%，负样本10%，如果模型把全部样本都判断为正样本，那么模型的准确率也有90%，可能也会觉得很好。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Examples</span></span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> accuracy_score</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment"># single label</span></span><br><span class="line">y = np.random.randint(<span class="number">0</span>, <span class="number">2</span>, <span class="number">20</span>)</span><br><span class="line">pred = np.random.randint(<span class="number">0</span>, <span class="number">2</span>, <span class="number">20</span>)</span><br><span class="line">print(accuracy_score(y, pred))</span><br><span class="line"></span><br><span class="line"><span class="comment"># multilabel</span></span><br><span class="line">print(accuracy_score(np.array([[<span class="number">1</span>,<span class="number">1</span>], [<span class="number">0</span>, <span class="number">0</span>]]), np.ones((<span class="number">2</span>, <span class="number">2</span>))))</span><br></pre></td></tr></table></figure>
+
+<h2 id="Balanced-Accuracy"><a href="#Balanced-Accuracy" class="headerlink" title="Balanced Accuracy"></a>Balanced Accuracy</h2><p><strong>计算</strong>:在二分类情况下，<br>$$<br>\text{balanced_accuracy}=\frac{\text{TPR+TNR}}{2} \<br>$$</p>
+<p>其中$\text{TPR}=\frac{\text{TP}}{\text{TP+FN}}=\text{Recall}$，可以理解为模型对正样本的识别率（覆盖率）；$\text{TNR}=\frac{\text{TN}}{\text{TN+FP}}$，可以理解为模型对负样本的识别率（覆盖率）。Balanced accuracy取TPR和TNR的平均，可以避免不平衡数据集对模型评估的影响。</p>
+<p><strong>特点</strong>:</p>
+<ol>
+<li>在平衡数据集上，balanced accuracy的等价于accuracy。</li>
+<li>如果模型在每个类别的性能一样（即TPR=TNR），balanced accuracy也等价于accuracy。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> balanced_accuracy_score</span><br><span class="line">y = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>]</span><br><span class="line">pred = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>]</span><br><span class="line">balanced_accuracy_score(y, pred, adjusted=<span class="literal">False</span>) <span class="comment"># 0.625</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Precision"><a href="#Precision" class="headerlink" title="Precision"></a>Precision</h2><p><strong>计算</strong>:<br>$$<br>\text{Precision} = \frac{\text{TP}}{\text{TP}+\text{FP}}<br>$$</p>
+<p><strong>特点</strong>：</p>
+<ul>
+<li>在二分类中，如果划分阈值越大，那么被划分为正样本的“门槛”越高，Precision（查准率）越大。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Examples</span></span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> precision_score</span><br><span class="line">y = np.random.randint(<span class="number">0</span>, <span class="number">2</span>, <span class="number">20</span>)</span><br><span class="line">pred = np.random.randint(<span class="number">0</span>, <span class="number">2</span>, <span class="number">20</span>)</span><br><span class="line">precision_score(y, pred)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Recall"><a href="#Recall" class="headerlink" title="Recall"></a>Recall</h2><p><strong>计算</strong>:<br>$$<br>\text{Recall} = \frac{\text{TP}}{\text{TP}+\text{FN}}<br>$$</p>
+<p><strong>特点</strong>: </p>
+<ul>
+<li>在二分类中，划分阈值越小，更多的样本被划分为正样本，那么正样本的覆盖率就越大，Recall（查全率）越大。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Examples</span></span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> recall_score</span><br><span class="line">y = np.random.randint(<span class="number">0</span>, <span class="number">2</span>, <span class="number">20</span>)</span><br><span class="line">pred = np.random.randint(<span class="number">0</span>, <span class="number">2</span>, <span class="number">20</span>)</span><br><span class="line">recall_score(y, pred)</span><br></pre></td></tr></table></figure>
+
+<h2 id="F1-score"><a href="#F1-score" class="headerlink" title="F1 score"></a>F1 score</h2><p><strong>计算</strong>:<br>$$<br>\text{F1}=\frac{2\text{Precision}*\text{Recall}}{\text{Precision}+\text{Recall}}<br>$$</p>
+<p><strong>特点</strong>: </p>
+<ul>
+<li>取F1 score最高的划分阈值，可以平衡Precision和Recall。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Examples</span></span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> f1_score</span><br><span class="line">y = np.random.randint(<span class="number">0</span>, <span class="number">2</span>, <span class="number">20</span>)</span><br><span class="line">pred = np.random.randint(<span class="number">0</span>, <span class="number">2</span>, <span class="number">20</span>)</span><br><span class="line">f1_score(y, pred)</span><br></pre></td></tr></table></figure>
+
+<h2 id="ROC"><a href="#ROC" class="headerlink" title="ROC"></a>ROC</h2><p>在样本集中，经过模型预测后得到每个样本判断为正例的概率值，然后遍历所有概率值为划分阈值，每个阈值会把样本划分为正例和反例，加上样本的标签可以计算出混淆矩阵，然后根据公式计算TPR和FPR。TPR和FPR的计算如下</p>
+<p><strong>TPR</strong>: 真正率，$\frac{\text{TP}}{\text{TP+FN}}$，TPR只关心正样本中有多少被正确覆盖了。</p>
+<p><strong>FPR</strong>: 假正率，$\frac{\text{FP}}{\text{FP+TN}}$，FPR只关心负样本有多少被错误覆盖了。</p>
+<p>ROC(Receiver Operating Characteristic)的横坐标是FPR，纵坐标是TPR，如下图：</p>
+<div class="text-center" align="center">
+    <img width="600"
+    src="/imgs/ROC.jpg" alt="ROC"> 
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">图2 ROC曲线</a></div>
+</div>
+
+
+
+<p><strong>ROC曲线的阈值问题</strong>：ROC曲线是遍历所有阈值来绘制整条曲线的，如果我们不断遍历所有阈值，预测的正样本和负样本是在不断变化的，相应地会产生不断变化的(FPR,TPR)点对，这些不同的(FPR,TPR)点对构成了ROC曲线。</p>
+<div align="center">
+    <img width="600" 
+    src="/imgs/ROC_1.webp" alt="ROC"> 
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">图3 ROC曲线--遍历阈值</a></div>
+</div>
+
+<p><strong>如何判断ROC曲线的好坏</strong>: FPR表示模型虚报正例的相应程度，TPR表示模型预测正例的覆盖程度，所以希望：虚报的正例越少越好，覆盖的正例越多越好。综合就是<strong>TPR越高，同时FPR越低，即ROC曲线越陡，模型的性能越好</strong>。</p>
+<div align=center>
+    <img width="600" style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="/imgs/ROC_2.webp" alt="ROC"> 
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">图3 ROC曲线--效果好坏</a></div>
+</div>
+
+<p><strong>ROC曲线无视样本不平衡</strong>: 因为ROC中的TPR和FPR分别关心正样本覆盖程度和负样本误判程度，两个指标跟正负样本的比例没有关系。</p>
+<div align=center>
+    <img width="600" style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="/imgs/ROC_3.webp" alt="ROC"> 
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">图3 ROC曲线--样本比例关系</a></div>
+</div>
+
+
+<p><strong>特点</strong>:</p>
+<ul>
+<li>ROC曲线可以比较两个模型的效果，将两个模型的ROC曲线画在同一个图上，上面的曲线比下面的曲线要好，然而这样只能定性的看（从图像上看），如果要定量的看，可以使用AUC（Area Under Curve），即ROC曲线下的面积。</li>
+</ul>
+<h1 id="Clustering"><a href="#Clustering" class="headerlink" title="Clustering"></a>Clustering</h1><h1 id="Regression"><a href="#Regression" class="headerlink" title="Regression"></a>Regression</h1><h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ol>
+<li>混淆矩阵：<a href="https://en.wikipedia.org/wiki/Confusion_matrix" target="_blank" rel="noopener">维基百科</a></li>
+<li><a href="https://scikit-learn.org/stable/modules/model_evaluation.html" target="_blank" rel="noopener">scikit-learn</a></li>
+</ol>
+]]></content>
       <categories>
-          
-          <category> machine learning </category>
-          
-          <category> evaluation </category>
-          
+        <category>machine learning</category>
+        <category>evaluation</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> evaluation </tag>
-            
-            <tag> machine learning </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-  
-  
+      <tags>
+        <tag>evaluation</tag>
+        <tag>machine learning</tag>
+      </tags>
+  </entry>
 </search>
