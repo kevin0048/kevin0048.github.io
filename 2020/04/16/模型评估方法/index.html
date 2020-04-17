@@ -33,8 +33,11 @@
 <meta property="og:image" content="https://kevin0048.github.io/imgs/ROC_1.webp">
 <meta property="og:image" content="https://kevin0048.github.io/imgs/ROC_2.webp">
 <meta property="og:image" content="https://kevin0048.github.io/imgs/ROC_3.webp">
+<meta property="og:image" content="https://kevin0048.github.io/imgs/cal_roc_auc_self.png">
+<meta property="og:image" content="https://kevin0048.github.io/imgs/cal_roc_auc_sklearn.png">
+<meta property="og:image" content="https://kevin0048.github.io/imgs/adjust_rand_index.png">
 <meta property="article:published_time" content="2020-04-16T01:47:44.000Z">
-<meta property="article:modified_time" content="2020-04-16T16:04:50.446Z">
+<meta property="article:modified_time" content="2020-04-17T06:23:53.805Z">
 <meta property="article:author" content="朱文">
 <meta property="article:tag" content="evaluation">
 <meta property="article:tag" content="machine learning">
@@ -236,7 +239,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-17 00:04:50" itemprop="dateModified" datetime="2020-04-17T00:04:50+08:00">2020-04-17</time>
+                <time title="修改时间：2020-04-17 14:23:53" itemprop="dateModified" datetime="2020-04-17T14:23:53+08:00">2020-04-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -256,7 +259,7 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">字数统计:</span>
-            <span class="post-count">1.3k(字)</span>
+            <span class="post-count">4.2k(字)</span>
             </span>
 
             <span class="post-time">
@@ -265,7 +268,7 @@
             <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">阅读时长≈</span>
-            <span class="post-count">5(分)</span>
+            <span class="post-count">19(分)</span>
             </span>
 
           
@@ -289,8 +292,11 @@
 
       
         <h1 id="Classification"><a href="#Classification" class="headerlink" title="Classification"></a>Classification</h1><h2 id="混淆矩阵"><a href="#混淆矩阵" class="headerlink" title="混淆矩阵"></a>混淆矩阵</h2><div align=center>
-    <img width="800" align="center"
-    src="/imgs/confusion_matrix.png" alt="confuse matrix"> 
+    <img width="800" style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); 
+    margin-right:5px; margin-left:5px; margin-bottom:5px; margin-top:5px" 
+    src="/imgs/confusion_matrix.png" alt="confuse matrix"
+    > 
     <br>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
@@ -308,8 +314,8 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Examples</span></span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> confusion_matrix</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">y = np.random.randint(<span class="number">0</span>, <span class="number">2</span>, <span class="number">20</span>)</span><br><span class="line">pred = np.random.randint(<span class="number">0</span>, <span class="number">2</span>, <span class="number">20</span>)</span><br><span class="line">print(confusion_matrix(y, pred))</span><br></pre></td></tr></table></figure>
 
 <h2 id="Accuracy"><a href="#Accuracy" class="headerlink" title="Accuracy"></a>Accuracy</h2><p>精度，样本预测正确的数量除以总样本数。</p>
-<p><strong>计算方法</strong>：$y_i$是第$i$个样本的标签，$\hat{y_i}$是第$i$个样本的预测标签，$n$是样本数量<br>$$<br>\text{accuracy}(y,\hat{y}) = \frac{1}{n}\sum\limits_{i=1}^{n}1(\hat{y}_i=y_i)<br>$$</p>
-<p><strong>使用混淆矩阵计算</strong>:<br>$$<br>\text{accuracy}=\frac{\text{TP}+\text{TN}}{\text{TP}+\text{TN}+\text{FP}+\text{FN}}<br>$$</p>
+<p><strong>计算方法</strong>：$y_i$是第$i$个样本的标签，$\hat{y_i}$是第$i$个样本的预测标签，$n$是样本数量<br>$$<br>\begin{equation}<br>\begin{aligned}<br>\text{accuracy}(y,\hat{y}) = \frac{1}{n}\sum\limits_{i=1}^{n}1(\hat{y}_i=y_i)<br>\end{aligned}<br>\end{equation}<br>$$</p>
+<p><strong>使用混淆矩阵计算</strong>:<br>$$<br>\begin{equation}<br>\begin{aligned}<br>\text{accuracy}=\frac{\text{TP}+\text{TN}}{\text{TP}+\text{TN}+\text{FP}+\text{FN}}<br>\end{aligned}<br>\end{equation}<br>$$</p>
 <p><strong>多标签计算</strong>:</p>
 <ol>
 <li>如果一个样本对应多个标签，那么可以设置<strong>样本的所有标签都对的上才表示分类正确</strong>的规则来计算accuracy。</li>
@@ -320,7 +326,7 @@
 </ol>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Examples</span></span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> accuracy_score</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment"># single label</span></span><br><span class="line">y = np.random.randint(<span class="number">0</span>, <span class="number">2</span>, <span class="number">20</span>)</span><br><span class="line">pred = np.random.randint(<span class="number">0</span>, <span class="number">2</span>, <span class="number">20</span>)</span><br><span class="line">print(accuracy_score(y, pred))</span><br><span class="line"></span><br><span class="line"><span class="comment"># multilabel</span></span><br><span class="line">print(accuracy_score(np.array([[<span class="number">1</span>,<span class="number">1</span>], [<span class="number">0</span>, <span class="number">0</span>]]), np.ones((<span class="number">2</span>, <span class="number">2</span>))))</span><br></pre></td></tr></table></figure>
 
-<h2 id="Balanced-Accuracy"><a href="#Balanced-Accuracy" class="headerlink" title="Balanced Accuracy"></a>Balanced Accuracy</h2><p><strong>计算</strong>:在二分类情况下，<br>$$<br>\text{balanced_accuracy}=\frac{\text{TPR+TNR}}{2} \<br>$$</p>
+<h2 id="Balanced-Accuracy"><a href="#Balanced-Accuracy" class="headerlink" title="Balanced Accuracy"></a>Balanced Accuracy</h2><p><strong>计算</strong>:在二分类情况下，<br>$$<br>\begin{equation}<br>\begin{aligned}<br>\text{balanced_accuracy}=\frac{\text{TPR+TNR}}{2}<br>\end{aligned}<br>\end{equation}<br>$$</p>
 <p>其中$\text{TPR}=\frac{\text{TP}}{\text{TP+FN}}=\text{Recall}$，可以理解为模型对正样本的识别率（覆盖率）；$\text{TNR}=\frac{\text{TN}}{\text{TN+FP}}$，可以理解为模型对负样本的识别率（覆盖率）。Balanced accuracy取TPR和TNR的平均，可以避免不平衡数据集对模型评估的影响。</p>
 <p><strong>特点</strong>:</p>
 <ol>
@@ -329,21 +335,21 @@
 </ol>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> balanced_accuracy_score</span><br><span class="line">y = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>]</span><br><span class="line">pred = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>]</span><br><span class="line">balanced_accuracy_score(y, pred, adjusted=<span class="literal">False</span>) <span class="comment"># 0.625</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="Precision"><a href="#Precision" class="headerlink" title="Precision"></a>Precision</h2><p><strong>计算</strong>:<br>$$<br>\text{Precision} = \frac{\text{TP}}{\text{TP}+\text{FP}}<br>$$</p>
+<h2 id="Precision"><a href="#Precision" class="headerlink" title="Precision"></a>Precision</h2><p><strong>计算</strong>:<br>$$<br>\begin{equation}<br>\begin{aligned}<br>\text{Precision} = \frac{\text{TP}}{\text{TP}+\text{FP}}<br>\end{aligned}<br>\end{equation}<br>$$</p>
 <p><strong>特点</strong>：</p>
 <ul>
 <li>在二分类中，如果划分阈值越大，那么被划分为正样本的“门槛”越高，Precision（查准率）越大。</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Examples</span></span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> precision_score</span><br><span class="line">y = np.random.randint(<span class="number">0</span>, <span class="number">2</span>, <span class="number">20</span>)</span><br><span class="line">pred = np.random.randint(<span class="number">0</span>, <span class="number">2</span>, <span class="number">20</span>)</span><br><span class="line">precision_score(y, pred)</span><br></pre></td></tr></table></figure>
 
-<h2 id="Recall"><a href="#Recall" class="headerlink" title="Recall"></a>Recall</h2><p><strong>计算</strong>:<br>$$<br>\text{Recall} = \frac{\text{TP}}{\text{TP}+\text{FN}}<br>$$</p>
+<h2 id="Recall"><a href="#Recall" class="headerlink" title="Recall"></a>Recall</h2><p><strong>计算</strong>:<br>$$<br>\begin{equation}<br>\begin{aligned}<br>\text{Recall} = \frac{\text{TP}}{\text{TP}+\text{FN}}<br>\end{aligned}<br>\end{equation}<br>$$</p>
 <p><strong>特点</strong>: </p>
 <ul>
 <li>在二分类中，划分阈值越小，更多的样本被划分为正样本，那么正样本的覆盖率就越大，Recall（查全率）越大。</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Examples</span></span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> recall_score</span><br><span class="line">y = np.random.randint(<span class="number">0</span>, <span class="number">2</span>, <span class="number">20</span>)</span><br><span class="line">pred = np.random.randint(<span class="number">0</span>, <span class="number">2</span>, <span class="number">20</span>)</span><br><span class="line">recall_score(y, pred)</span><br></pre></td></tr></table></figure>
 
-<h2 id="F1-score"><a href="#F1-score" class="headerlink" title="F1 score"></a>F1 score</h2><p><strong>计算</strong>:<br>$$<br>\text{F1}=\frac{2\text{Precision}*\text{Recall}}{\text{Precision}+\text{Recall}}<br>$$</p>
+<h2 id="F1-score"><a href="#F1-score" class="headerlink" title="F1 score"></a>F1 score</h2><p><strong>计算</strong>:<br>$$<br>\begin{equation}<br>\begin{aligned}<br>\text{F1}=\frac{2\text{Precision}*\text{Recall}}{\text{Precision}+\text{Recall}}<br>\end{aligned}<br>\end{equation}<br>$$</p>
 <p><strong>特点</strong>: </p>
 <ul>
 <li>取F1 score最高的划分阈值，可以平衡Precision和Recall。</li>
@@ -354,21 +360,24 @@
 <p><strong>TPR</strong>: 真正率，$\frac{\text{TP}}{\text{TP+FN}}$，TPR只关心正样本中有多少被正确覆盖了。</p>
 <p><strong>FPR</strong>: 假正率，$\frac{\text{FP}}{\text{FP+TN}}$，FPR只关心负样本有多少被错误覆盖了。</p>
 <p>ROC(Receiver Operating Characteristic)的横坐标是FPR，纵坐标是TPR，如下图：</p>
-<div class="text-center" align="center">
-    <img width="600"
-    src="/imgs/ROC.jpg" alt="ROC"> 
+<div align=center>
+    <img width="600" style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); 
+    margin-right:5px; margin-left:5px; margin-bottom:5px; margin-top:5px" 
+    src="/imgs/ROC.jpg" alt="ROC" > 
     <br>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
     color: #999;
-    padding: 2px;">图2 ROC曲线</a></div>
+    padding: 2px">图2 ROC曲线</div>
 </div>
-
 
 
 <p><strong>ROC曲线的阈值问题</strong>：ROC曲线是遍历所有阈值来绘制整条曲线的，如果我们不断遍历所有阈值，预测的正样本和负样本是在不断变化的，相应地会产生不断变化的(FPR,TPR)点对，这些不同的(FPR,TPR)点对构成了ROC曲线。</p>
 <div align="center">
-    <img width="600" 
+    <img width="600" style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); 
+    margin-right:5px; margin-left:5px; margin-bottom:5px; margin-top:5px" 
     src="/imgs/ROC_1.webp" alt="ROC"> 
     <br>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
@@ -380,25 +389,27 @@
 <p><strong>如何判断ROC曲线的好坏</strong>: FPR表示模型虚报正例的相应程度，TPR表示模型预测正例的覆盖程度，所以希望：虚报的正例越少越好，覆盖的正例越多越好。综合就是<strong>TPR越高，同时FPR越低，即ROC曲线越陡，模型的性能越好</strong>。</p>
 <div align=center>
     <img width="600" style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); 
+    margin-right:5px; margin-left:5px; margin-bottom:5px; margin-top:5px" 
     src="/imgs/ROC_2.webp" alt="ROC"> 
     <br>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
     color: #999;
-    padding: 2px;">图3 ROC曲线--效果好坏</a></div>
+    padding: 2px;">图4 ROC曲线--效果好坏</a></div>
 </div>
 
 <p><strong>ROC曲线无视样本不平衡</strong>: 因为ROC中的TPR和FPR分别关心正样本覆盖程度和负样本误判程度，两个指标跟正负样本的比例没有关系。</p>
 <div align=center>
     <img width="600" style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);
+    margin-right:5px; margin-left:5px; margin-bottom:5px; margin-top:5px" 
     src="/imgs/ROC_3.webp" alt="ROC"> 
     <br>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
     color: #999;
-    padding: 2px;">图3 ROC曲线--样本比例关系</a></div>
+    padding: 2px;">图5 ROC曲线--样本比例关系</a></div>
 </div>
 
 
@@ -406,9 +417,146 @@
 <ul>
 <li>ROC曲线可以比较两个模型的效果，将两个模型的ROC曲线画在同一个图上，上面的曲线比下面的曲线要好，然而这样只能定性的看（从图像上看），如果要定量的看，可以使用AUC（Area Under Curve），即ROC曲线下的面积。</li>
 </ul>
-<h1 id="Clustering"><a href="#Clustering" class="headerlink" title="Clustering"></a>Clustering</h1><h1 id="Regression"><a href="#Regression" class="headerlink" title="Regression"></a>Regression</h1><h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ol>
+<h2 id="AUC-Area-Under-Curve"><a href="#AUC-Area-Under-Curve" class="headerlink" title="AUC(Area Under Curve)"></a>AUC(Area Under Curve)</h2><p>AUC是ROC曲线下的面积</p>
+<p><strong>AUC的含义</strong>：随机给定一个正样本和负样本，分类器输出<strong>该正样本为正的概率值</strong>比分类器输出<strong>该负样本为正的概率值</strong>要大的可能性</p>
+<p><strong>特点</strong>: AUC可以避免设定一个阈值，将概率值转换成类别，直接从模型预测样本的概率上去评判模型的优劣。但是AUC只能用于二分类任务。在很多模型上，<strong>AUC可以作为跟logloss一样的优化目标</strong>，来训练模型</p>
+<p><strong>AUC的计算</strong>:</p>
+<ol>
+<li><p>按概率值从高到矮排个降序（概率值越高，排序值越大），对于正样本中概率最高的那个，排序为rank_1，比它概率小的有M-1个正样本（M为正样本个数），(rank_1 - M + 0)个负样本</p>
+</li>
+<li><p>正样本概率第二高的，排序为rank_2，比它概率小的有M-2个正样本，（rank_2-M+1）个负样本</p>
+</li>
+<li><p>正样本概率第三高的，排序为rank_3，比它概率小的有M-3个正样本，（rank_3-M+2) 个负样本</p>
+</li>
+<li><p>一次类推，正样本中概率最小的，排序为rank_M， 比它概率小的有M-M=0个正样本，（rank_M-M+M-1)=(rank_M-1)个负样本</p>
+</li>
+<li><p>总共有M*N个正负样本对（M为正样本数量，N为负样本数量）。把所有比较中正样本概率大于负样本概率的例子都算上，得到公式（rank_1-M + rank_2-M+1 + rank_3-M+2 + … + rank_M-M+M-1)/(M*N)，就是正样本概率大于负样本概率的可能性了。如下式</p>
+</li>
+</ol>
+<p>$$<br>\begin{equation}<br>\begin{aligned}<br>\text{AUC} &amp; = \frac{(rank_1-M)+(rank_2-M+1) + (rank_3-M+2) + … + (rank_M-M+M-1)}{M\times N} \\<br>&amp; = \frac{(rank_1+rank_2+rank_3+…+rank_M)-(M+M-1+M-2+…+1)}{M\times N} \\<br>&amp; = \frac{\sum_{ins_i\in \text{positiveclass}}rank_{ins_i} - \frac{M\times (M+1)}{2}}{M\times N}<br>\end{aligned}<br>\end{equation}<br>$$</p>
+<ol start="6">
+<li>简单讲，就是<strong>所有正样本在所有样本的排序的序号加起来</strong>，减去<strong>正样本在正样本的序号和</strong>，再<strong>除以正样本数量乘以负样本数量</strong><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 手动计算ROC和AUC</span></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">y = np.random.randint(<span class="number">0</span>,<span class="number">2</span>, <span class="number">100</span>)</span><br><span class="line">pred = np.random.uniform(size=<span class="number">100</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算ROC</span></span><br><span class="line">TP_list = list()</span><br><span class="line">TN_list = list()</span><br><span class="line">FP_list = list()</span><br><span class="line">FN_list = list()</span><br><span class="line">tpr = list()</span><br><span class="line">fpr = list()</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> threshold <span class="keyword">in</span> np.linspace(start=<span class="number">0</span>, stop=<span class="number">1</span>, num=<span class="number">500</span>): <span class="comment"># 此处应该是遍历pred的排序后的值</span></span><br><span class="line">    y_pred = [<span class="number">1</span> <span class="keyword">if</span> item &gt;= threshold <span class="keyword">else</span> <span class="number">0</span> <span class="keyword">for</span> item <span class="keyword">in</span> pred]</span><br><span class="line">    confuse_matrix = confusion_matrix(y, y_pred)</span><br><span class="line">    TP_list.append(confuse_matrix[<span class="number">1</span>,<span class="number">1</span>])</span><br><span class="line">    TN_list.append(confuse_matrix[<span class="number">0</span>,<span class="number">0</span>])</span><br><span class="line">    FN_list.append(confuse_matrix[<span class="number">1</span>,<span class="number">0</span>])</span><br><span class="line">    FP_list.append(confuse_matrix[<span class="number">0</span>,<span class="number">1</span>])</span><br><span class="line">    </span><br><span class="line">    tpr.append(TP_list[<span class="number">-1</span>]/(TP_list[<span class="number">-1</span>]+FN_list[<span class="number">-1</span>]))</span><br><span class="line">    fpr.append(FP_list[<span class="number">-1</span>]/(FP_list[<span class="number">-1</span>]+TN_list[<span class="number">-1</span>]))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算AUC</span></span><br><span class="line">pred_true = [[pred[i],y[i]] <span class="keyword">for</span> i <span class="keyword">in</span> range(len(pred))] <span class="comment"># 合并预测概率值和真实标签</span></span><br><span class="line">pred_true = sorted(pred_true, key=<span class="keyword">lambda</span> x:x[<span class="number">0</span>]) <span class="comment"># 对预测概率值进行升序</span></span><br><span class="line">rank_index = list(range(<span class="number">1</span>, len(pred)+<span class="number">1</span>)) <span class="comment"># 所有样本的序号</span></span><br><span class="line"></span><br><span class="line">M = sum(np.array(y)==<span class="number">1</span>) <span class="comment"># 正样本个数</span></span><br><span class="line">N = sum(np.array(y)==<span class="number">0</span>) <span class="comment"># 负样本个数</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算正样本index和</span></span><br><span class="line">sum_pos_index = sum([rank_index[i] <span class="keyword">if</span> pred_true[i][<span class="number">1</span>]==<span class="number">1</span> <span class="keyword">else</span> <span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(len(pred_true))])</span><br><span class="line"><span class="comment"># 根据公式计算AUC</span></span><br><span class="line">AUC = (sum_pos_index - M*(M+<span class="number">1</span>)/<span class="number">2</span>)/(M*N)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">plt.figure()</span><br><span class="line">lw = <span class="number">2</span></span><br><span class="line">plt.plot(fpr,tpr,  color=<span class="string">'darkorange'</span>,</span><br><span class="line">         lw=lw, label=<span class="string">'ROC curve (area = %0.2f)'</span> % AUC)</span><br><span class="line">plt.plot([<span class="number">0</span>, <span class="number">1</span>], [<span class="number">0</span>, <span class="number">1</span>], color=<span class="string">'navy'</span>, lw=lw, linestyle=<span class="string">'--'</span>)</span><br><span class="line">plt.xlim([<span class="number">0.0</span>, <span class="number">1.0</span>])</span><br><span class="line">plt.ylim([<span class="number">0.0</span>, <span class="number">1.05</span>])</span><br><span class="line">plt.xlabel(<span class="string">'False Positive Rate'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'True Positive Rate'</span>)</span><br><span class="line">plt.title(<span class="string">'手动计算ROC和AUC'</span>)</span><br><span class="line">plt.legend(loc=<span class="string">"lower right"</span>)</span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用sklearn计算ROC和AUC</span></span><br><span class="line">fpr, tpr,_ = roc_curve(y, pred)</span><br><span class="line">auc_score = auc(fpr, tpr)</span><br><span class="line"></span><br><span class="line">plt.figure()</span><br><span class="line">lw = <span class="number">2</span></span><br><span class="line">plt.plot(fpr,tpr,  color=<span class="string">'darkorange'</span>,</span><br><span class="line">         lw=lw, label=<span class="string">'ROC curve (area = %0.2f)'</span> % auc_score)</span><br><span class="line">plt.plot([<span class="number">0</span>, <span class="number">1</span>], [<span class="number">0</span>, <span class="number">1</span>], color=<span class="string">'navy'</span>, lw=lw, linestyle=<span class="string">'--'</span>)</span><br><span class="line">plt.xlim([<span class="number">0.0</span>, <span class="number">1.0</span>])</span><br><span class="line">plt.ylim([<span class="number">0.0</span>, <span class="number">1.05</span>])</span><br><span class="line">plt.xlabel(<span class="string">'False Positive Rate'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'True Positive Rate'</span>)</span><br><span class="line">plt.title(<span class="string">'调包计算ROC和AUC'</span>)</span><br><span class="line">plt.legend(loc=<span class="string">"lower right"</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<div align=center>
+    <img width="400" style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);
+    margin-right:5px; margin-left:5px; margin-bottom:5px; margin-top:5px" 
+    src="/imgs/cal_roc_auc_self.png" alt="cal_roc_auc_self"> 
+    <img width="400" style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);
+    margin-right:5px; margin-left:5px; margin-bottom:5px; margin-top:5px" 
+    src="/imgs/cal_roc_auc_sklearn.png" alt="cal_roc_auc_sklearn">
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">图6 计算ROC-AUC</a></div>
+</div>
+
+<h2 id="Average-Precision-AP"><a href="#Average-Precision-AP" class="headerlink" title="Average Precision(AP)"></a>Average Precision(AP)</h2><p><strong>计算</strong>:<br>$$<br>\begin{equation}<br>\begin{aligned}<br>\text{AP}=\sum_n(R_n - R_{n-1})P_n<br>\end{aligned}<br>\end{equation}<br>$$<br>其中，$P_n$和$R_n$是第n个threshold的precision和recall</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> average_precision_score</span><br><span class="line">y = np.random.randint(<span class="number">0</span>,<span class="number">2</span>, <span class="number">100</span>)</span><br><span class="line">pred = np.random.uniform(size=<span class="number">100</span>)</span><br><span class="line">average_precision_score(y, pred)</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="mean-Average-Precision-mAP"><a href="#mean-Average-Precision-mAP" class="headerlink" title="mean Average Precision(mAP)"></a>mean Average Precision(mAP)</h2><p>在CV问题中，mAP先计算每个类别的AP，然后再求个平均</p>
+<p><strong>计算</strong>:<br>$$<br>\begin{equation}<br>\begin{aligned}<br>\text{mAP} = \frac{\sum\limits_{q=1}^Q \text{average_precision}(q)}{Q}<br>\end{aligned}<br>\end{equation}<br>$$</p>
+<h2 id="brier-score-loss"><a href="#brier-score-loss" class="headerlink" title="brier score loss"></a>brier score loss</h2><p><strong>计算</strong>: 对于二分类，正负标签分别为0-1，brier score分别计算<strong>正样本的预测输出概率值与1</strong>、<strong>负样本的预测输出概率值与0</strong>的差的平方和，再除以样本总数</p>
+<p><strong>特点</strong></p>
+<ul>
+<li>score越小越好<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> brier_score_loss</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">y_true = np.array([<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>])</span><br><span class="line">y_true_categorical = np.array([<span class="string">"spam"</span>, <span class="string">"ham"</span>, <span class="string">"ham"</span>, <span class="string">"spam"</span>])</span><br><span class="line">y_prob = np.array([<span class="number">0.1</span>, <span class="number">0.9</span>, <span class="number">0.8</span>, <span class="number">0.3</span>])</span><br><span class="line">brier_score_loss(y_true, y_prob) <span class="comment"># (0.1**2 + 0.1**2 + 0.2**2 + 0.3**2)/4</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="neg-log-loss"><a href="#neg-log-loss" class="headerlink" title="neg log loss"></a>neg log loss</h2><p>负对数似然损失</p>
+<ul>
+<li><p>如果是二分类，y是0-1标签：样本X只有一个概率值p，表示样本属于正样本的概率；标签y=1表示正样本，y=0表示负样本，那么单个样本loss计算如下<br>$$<br>\begin{equation}<br>\begin{aligned}<br>\text{neg_log_loss} = -(y\log(p)+(1-y)\log(1-p)<br>\end{aligned}<br>\end{equation}<br>$$</p>
+</li>
+<li><p>如果是二分类或多分类，数据集有几个类别，样本X就有几个概率值，分别表示样本X属于不同类别的概率；标签Y，可以是类别的index，也可以是onehot后的编码，那么属于第C类的样本X的loss计算如下<br>$$<br>\begin{equation}<br>\begin{aligned}<br>\text{neg_log_loss} =  -\log(p[C])<br>\end{aligned}<br>\end{equation}<br>$$</p>
+</li>
+</ul>
+<p><strong>第一个公式只用了一个概率值p来表示样本X属于正样本的概率</strong>，如果X是正样本，loss为$-\log(p)$，如果X是负样本，loss为$-\log(1-p)$；<strong>第二个公式用了多个概率值，分别表示样本X属于不同类别的概率</strong>，所以不管样本属于哪一类，只需要计算那一类的概率值的对数的负数，即$-\log(p[C])$</p>
+<p>对于多个样本，一般把单个样本的loss进行求平均</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> log_loss</span><br><span class="line">log_loss([<span class="string">"spam"</span>, <span class="string">"ham"</span>, <span class="string">"ham"</span>, <span class="string">"spam"</span>],</span><br><span class="line">         [[<span class="number">.1</span>, <span class="number">.9</span>], [<span class="number">.9</span>, <span class="number">.1</span>], [<span class="number">.8</span>, <span class="number">.2</span>], [<span class="number">.35</span>, <span class="number">.65</span>]]) </span><br><span class="line"><span class="comment"># -(np.log(0.9)*2+np.log(0.8)+np.log(0.65))/4</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="jaccard-score"><a href="#jaccard-score" class="headerlink" title="jaccard score"></a>jaccard score</h2><p><strong>计算</strong>: 假设第i个样本的真实标签为$y_i$，预估标签为$\hat{y}_i$， 那么样本$X_i$的真实标签和预估标签的jaccard相似度<br>$$<br>\begin{equation}<br>\begin{aligned}<br>J(Y_i,\hat{y}_i) &amp;= \frac{|y_i\cap \hat{y}_i|}{|y_i\cup \hat{y}_i|}\\<br>&amp; =\frac{|y_i\cap \hat{y}_i|}{|y_i|+|\hat{y}_i|-|y_i\cap \hat{y}_i|}<br>\end{aligned}<br>\end{equation}<br>$$<br>交集表示两个标签重叠数量，并集是标签的个数。</p>
+<p><strong>例子</strong>:<br>A = {0,1,2,5,6}<br>B = {0,2,3,4,5,7,9}</p>
+<p>Solution: J(A,B) = |A∩B| / |A∪B| = |{0,2,5}| / |{0,1,2,3,4,5,6,7,9}| = 3/9 = 0.33.</p>
+<p><strong>特点</strong>:</p>
+<ul>
+<li>jaccard score越大，样本相似度越高</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> jaccard_score</span><br><span class="line">y_true = np.array([[<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">                   [<span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>]])</span><br><span class="line">y_pred = np.array([[<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">                   [<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>]])</span><br><span class="line"></span><br><span class="line">print(jaccard_score(y_true, y_pred, average=<span class="literal">None</span>))</span><br><span class="line"></span><br><span class="line">print(jaccard_score(y_true, y_pred, average=<span class="string">"macro"</span>)) <span class="comment"># 每一个类别的score平均</span></span><br><span class="line"></span><br><span class="line">print(jaccard_score(y_true, y_pred, average=<span class="string">"micro"</span>)) <span class="comment"># TP/(TP+FP+FN)</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="Clustering"><a href="#Clustering" class="headerlink" title="Clustering"></a>Clustering</h1><h2 id="adjusted-mutual-info-score-调整互信息指数"><a href="#adjusted-mutual-info-score-调整互信息指数" class="headerlink" title="adjusted mutual info score(调整互信息指数)"></a>adjusted mutual info score(调整互信息指数)</h2><p><a href="https://en.wikipedia.org/wiki/Adjusted_mutual_information" target="_blank" rel="noopener">wiki</a></p>
+<h3 id="mutual-information-of-tow-partitions-互信息指数）"><a href="#mutual-information-of-tow-partitions-互信息指数）" class="headerlink" title="mutual information of tow partitions(互信息指数）"></a>mutual information of tow partitions(互信息指数）</h3><p>给定$N$元素的集合$S\{s_1,s_2,…,s_N\}$，使用两种方法对$S$进行聚类，得到两个聚类结果：$U=\{U_1,U_2,…,U_R\}$，有$R$个簇；$V=\{V_1,V_2,…,V_C\}$，有$C$个簇。这两个聚类结果满足$\cup_{i=1}^Ru_i=S=\cup_{j=1}^Cv_j$，对于$U_i,V_j$，任意$i\neq j$，满足<br>$$<br>\begin{equation}<br>\begin{aligned}<br>U_i\cap U_j=\varnothing = V_i\cap U_j \\<br>\cup_{i=1}^RU_i = \cup_{j=1}^CV_j = S<br>\end{aligned}<br>\end{equation}<br>$$</p>
+<p>设定</p>
+<ul>
+<li>$n_{ij}$是簇$U_i$和簇$V_j$共有的元素个数，即$n_{ij}=|U_i\cap V_j|$</li>
+<li>$P_U(i)=\frac{|U_i|}{N}$为任选一个样本，落在簇$U_i$的概率；$P_V(j)=\frac{|V_j|}{N}$为任选一个样本，落在簇$V_j$的概率；$P_{UV}(i,j)=\frac{|U_i\cap V_j|}{N}$为任选一个样本，同时落在簇$U_i$和簇$V_j$的概率</li>
+</ul>
+<p>则，</p>
+<ul>
+<li>计算簇$U$的熵（entropy）：<br>$$<br>\begin{equation}<br>\begin{aligned}<br>H(U)=-\sum\limits_{i=1}^RP_U(i)\log P_U(i)<br>\end{aligned}<br>\end{equation}<br>$$</li>
+<li>计算簇$V$的熵（entropy）：<br>$$<br>\begin{equation}<br>\begin{aligned}<br>H(V)=-\sum\limits_{j=1}^RP_U(j)\log P_U(j)<br>\end{aligned}<br>\end{equation}<br>$$</li>
+<li>互信息指数(MI)的计算如下：<br>$$<br>\begin{equation}<br>\begin{aligned}<br>\text{MI(U,V)} = \sum\limits_{i=1}^R\sum\limits_{j=1}^CP_{UV}(i,j)\log\frac{P_{UV}(i,j)}{P_U(i)P_V(j)}<br>\end{aligned}<br>\end{equation}<br>$$</li>
+</ul>
+<p>$E{MI(U,V)}$是MI的期望，计算如下<br>$$<br>\begin{equation}<br>\begin{aligned}<br>E{MI(U,V)}=\sum\limits_{i=1}^R\sum\limits_{j=1}^C\sum\limits_{n_{ij}=(a_i+b_j-N)^+}^{\min(a_i,b_j)}\frac{n_{ij}}{N}\log(\frac{N\cdot n_{ij}}{a_ib_j})\times \frac{a_i!b_j!(N-a_i)!(N-b_j)!}{N!n_{ij}!(a_i-n_{ij})!(b_j-n_{ij})!(N-a_i-b_j+n_{ij})!}<br>\end{aligned}<br>\end{equation}<br>$$</p>
+<p>其中</p>
+<ul>
+<li>$(a_i+b_j-N)^+$ 等于 $\max(1, a_i+b_-N)$</li>
+<li>$a_i=\sum\limits_{j=1}^C n_{ij}$</li>
+<li>$b_j=\sum\limits_{i=1}^R n_{ij}$</li>
+</ul>
+<p>那么调整互信息指数计算如下:<br>$$<br>\begin{equation}<br>\begin{aligned}<br>AMI(U,V) = \frac{MI(U,V) - E{MI(U,V)}}{\max\{H(U),H(V)\} - E{MI(U,V)}}<br>\end{aligned}<br>\end{equation}<br>$$</p>
+<p>特点</p>
+<ul>
+<li>MI是由熵$H(U)$和$H(V)$决定的，量化了两个聚类共享的信息，可以作为聚类相似性的度量</li>
+<li>AMI取值范围在[0,1]之间，随机聚类的期望是0，两个聚类完全一样值为1；可用于聚类的评估</li>
+<li>AMI需要先验知识（通常这是缺点，但是有了先验知识，评估效果会比较好）</li>
+<li>$U$和$V$互换，不影响AMI结果</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> mutual_info_score, adjusted_mutual_info_score</span><br><span class="line">y = np.random.randint(<span class="number">0</span>,<span class="number">2</span>, size=(<span class="number">10000</span>))</span><br><span class="line">pred = np.random.randint(<span class="number">0</span>,<span class="number">2</span>, size=(<span class="number">10000</span>))</span><br><span class="line"></span><br><span class="line">print(mutual_info_score(y,y)) <span class="comment"># 两个一样的划分，互信息指数不等于1</span></span><br><span class="line">print(mutual_info_score(y,pred)) <span class="comment"># 两个随机划分，互信息指数约等于0</span></span><br><span class="line"></span><br><span class="line">print(adjusted_mutual_info_score(y,y)) <span class="comment"># 两个一样的划分，AMI=1</span></span><br><span class="line">print(adjusted_mutual_info_score(y,pred)) <span class="comment"># 两个随机划分，AMI=0</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="adjusted-rand-score（调整兰德系数）"><a href="#adjusted-rand-score（调整兰德系数）" class="headerlink" title="adjusted rand score（调整兰德系数）"></a>adjusted rand score（调整兰德系数）</h2><h3 id="rand-index-兰德系数"><a href="#rand-index-兰德系数" class="headerlink" title="rand index-兰德系数"></a>rand index-兰德系数</h3><p>给定$n$个元素的集合$S={s_1,s_2,…,s_n}$，使用两种方法对$S$进行聚类，得到两个聚类结果：$U={u_1,u_2,…,u_R}$，有$R$个簇；$V={v_1,v_2,…,v_C}$，有$C$个簇。这两个聚类结果满足$\cup_{i=1}^Ru_i=S=\cup_{j=1}^Cv_j$；对于$u_i,v_j$，任意$i\neq j$，满足<br>$$<br>\begin{equation}<br>\begin{aligned}<br>u_i\cap u_{j}=\varnothing=v_i\cap v_{j}\\<br>\cup_{i=1}^Ru_i = \cup_{j=1}^Cv_j = S<br>\end{aligned}<br>\end{equation}<br>$$</p>
+<p>假设U是true label, V是聚类结果，设定四个统计量：</p>
+<ul>
+<li>$a$是在$U$中为同一类且在$V$中也是同一类的数据点对数</li>
+<li>$b$是在$U$中为同一类且在$V$中不是同一类的数据点对数</li>
+<li>$c$是在$U$中不为同一类且在$V$中是同一类的数据点对数</li>
+<li>$d$是在$U$中不为同一类且在$V$中不是同一类的数据点对数</li>
+</ul>
+<p>那么rand index的计算：<br>$$<br>\begin{equation}<br>\begin{aligned}<br>RI=\frac{a+d}{a+b+c+d}<br>\end{aligned}<br>\end{equation}<br>$$<br>分母的$a+b+c+d$即在所有样本中任取两个样本:$C_n^2$</p>
+<p><strong>问题</strong>:两个随机划分的期望并非常数（比如0）</p>
+<h3 id="adjusted-rand-score-调整兰德系数"><a href="#adjusted-rand-score-调整兰德系数" class="headerlink" title="adjusted rand score-调整兰德系数"></a>adjusted rand score-调整兰德系数</h3><p>假设$n_{ij}$表示同在类别$u_i$和簇$v_j$的数据点数目，$n_{i.}$为类$u_i$的数据点数据，$n_{.j}$为簇$v_j$的数目，如下表</p>
+<div align=center><img width="600" src="/imgs/adjust_rand_index.png" alt="adjusted_rand_score"/></div>
+
+
+<p>调整的兰德系数为:<br>$$<br>\begin{equation}<br>\begin{aligned}<br>ARI  &amp; = \frac{RI-E(RI)}{\max(RI)-E(RI)}<br>\end{aligned}<br>\end{equation}<br>$$<br>其中</p>
+<ul>
+<li>$RI = \sum_{i,j}(C_{n_{ij}^2})$</li>
+<li>$E(RI) = E(\sum_{i,j}(C_{n_{ij}}^2)) = [\sum_i(C_{n_{i.}}^2)\sum_j(C_{n_{.j}}^2)]/(C_n^2)$</li>
+<li>$\max(RI)= \frac{1}{2}[\sum_i(C_{n_{i.}}^2) + \sum_j(C_{n_{.j}}^2)]$</li>
+</ul>
+<p><strong>特点</strong>：</p>
+<ul>
+<li>随机划分的期望是0</li>
+<li>ARI的范围在[-1,1]，越接近1越好，越接近-1，越差</li>
+<li>可用于聚类算法之间的比较</li>
+<li><strong>缺点</strong>：ARI需要真实类别的标签，在现实中可能不存在这样的数据</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> adjusted_rand_score</span><br><span class="line">y = np.random.randint(<span class="number">0</span>,<span class="number">2</span>, size=(<span class="number">10000</span>))</span><br><span class="line">pred = np.random.randint(<span class="number">0</span>,<span class="number">2</span>, size=(<span class="number">10000</span>))</span><br><span class="line"></span><br><span class="line">print(adjusted_rand_score(y, pred)) <span class="comment"># 两个随机划分，ARI约等于0</span></span><br><span class="line">print(adjusted_rand_score(pred, y)) <span class="comment"># 两者互换，ARI不变</span></span><br></pre></td></tr></table></figure>
+
+
+<h1 id="Regression"><a href="#Regression" class="headerlink" title="Regression"></a>Regression</h1><h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ol>
 <li>混淆矩阵：<a href="https://en.wikipedia.org/wiki/Confusion_matrix" target="_blank" rel="noopener">维基百科</a></li>
 <li><a href="https://scikit-learn.org/stable/modules/model_evaluation.html" target="_blank" rel="noopener">scikit-learn</a></li>
+<li><a href="https://www.zhihu.com/question/39840928/answer/84906286" target="_blank" rel="noopener">知乎-如何理解机器学习和统计中的AUC</a></li>
+<li><a href="https://faculty.washington.edu/kayee/pca/supp.pdf" target="_blank" rel="noopener">paper-Adjusted Rand index</a></li>
 </ol>
 
     </div>
@@ -516,7 +664,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Classification"><span class="nav-number">1.</span> <span class="nav-text">Classification</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#混淆矩阵"><span class="nav-number">1.1.</span> <span class="nav-text">混淆矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Accuracy"><span class="nav-number">1.2.</span> <span class="nav-text">Accuracy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Balanced-Accuracy"><span class="nav-number">1.3.</span> <span class="nav-text">Balanced Accuracy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Precision"><span class="nav-number">1.4.</span> <span class="nav-text">Precision</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Recall"><span class="nav-number">1.5.</span> <span class="nav-text">Recall</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#F1-score"><span class="nav-number">1.6.</span> <span class="nav-text">F1 score</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ROC"><span class="nav-number">1.7.</span> <span class="nav-text">ROC</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Clustering"><span class="nav-number">2.</span> <span class="nav-text">Clustering</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Regression"><span class="nav-number">3.</span> <span class="nav-text">Regression</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">4.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Classification"><span class="nav-number">1.</span> <span class="nav-text">Classification</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#混淆矩阵"><span class="nav-number">1.1.</span> <span class="nav-text">混淆矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Accuracy"><span class="nav-number">1.2.</span> <span class="nav-text">Accuracy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Balanced-Accuracy"><span class="nav-number">1.3.</span> <span class="nav-text">Balanced Accuracy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Precision"><span class="nav-number">1.4.</span> <span class="nav-text">Precision</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Recall"><span class="nav-number">1.5.</span> <span class="nav-text">Recall</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#F1-score"><span class="nav-number">1.6.</span> <span class="nav-text">F1 score</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ROC"><span class="nav-number">1.7.</span> <span class="nav-text">ROC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AUC-Area-Under-Curve"><span class="nav-number">1.8.</span> <span class="nav-text">AUC(Area Under Curve)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Average-Precision-AP"><span class="nav-number">1.9.</span> <span class="nav-text">Average Precision(AP)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mean-Average-Precision-mAP"><span class="nav-number">1.10.</span> <span class="nav-text">mean Average Precision(mAP)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#brier-score-loss"><span class="nav-number">1.11.</span> <span class="nav-text">brier score loss</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#neg-log-loss"><span class="nav-number">1.12.</span> <span class="nav-text">neg log loss</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jaccard-score"><span class="nav-number">1.13.</span> <span class="nav-text">jaccard score</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Clustering"><span class="nav-number">2.</span> <span class="nav-text">Clustering</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#adjusted-mutual-info-score-调整互信息指数"><span class="nav-number">2.1.</span> <span class="nav-text">adjusted mutual info score(调整互信息指数)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mutual-information-of-tow-partitions-互信息指数）"><span class="nav-number">2.1.1.</span> <span class="nav-text">mutual information of tow partitions(互信息指数）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#adjusted-rand-score（调整兰德系数）"><span class="nav-number">2.2.</span> <span class="nav-text">adjusted rand score（调整兰德系数）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#rand-index-兰德系数"><span class="nav-number">2.2.1.</span> <span class="nav-text">rand index-兰德系数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#adjusted-rand-score-调整兰德系数"><span class="nav-number">2.2.2.</span> <span class="nav-text">adjusted rand score-调整兰德系数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Regression"><span class="nav-number">3.</span> <span class="nav-text">Regression</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">4.</span> <span class="nav-text">Reference</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -594,7 +742,7 @@
 <div class="theme-info">
 &nbsp; | &nbsp;
   <div class="powered-by"></div>
-  <span class="post-count">站点总字数：1.3k</span>
+  <span class="post-count">站点总字数：4.2k</span>
 </div>
 </div>
 
