@@ -1,152 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>基于hexo、next主题和github的个人博客搭建</title>
-    <url>/2020/04/17/%E5%9F%BA%E4%BA%8Ehexo%E3%80%81next%E4%B8%BB%E9%A2%98%E5%92%8Cgithub%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</url>
-    <content><![CDATA[<p>本教程基于Ubuntu16.04和window10 wsl。</p>
-<h1 id="hexo安装配置"><a href="#hexo安装配置" class="headerlink" title="hexo安装配置"></a>hexo安装配置</h1><ol>
-<li><p>安装npm</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt-get install npm</span><br><span class="line"></span><br><span class="line">npm --version</span><br><span class="line"><span class="meta">#</span><span class="bash"> 3.5.2</span></span><br></pre></td></tr></table></figure></li>
-<li><p>npm换国内源</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm config set registry http://registry.npm.taobao.org/</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>安装node</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt-get install nodejs-legacy</span><br><span class="line"></span><br><span class="line">node --version</span><br><span class="line"><span class="meta">#</span><span class="bash"> 4.2.6</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>更新node版本</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install -g n # 安装n</span><br><span class="line">n stable # 安装最新稳定版node</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 重启一个shell</span></span><br><span class="line">node --version</span><br><span class="line"><span class="meta">#</span><span class="bash"> v12.16.2</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>安装hexo</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install -g hexo</span><br><span class="line"></span><br><span class="line">hexo version</span><br><span class="line"><span class="meta">#</span><span class="bash"> hexo-cli: 3.1.0</span></span><br></pre></td></tr></table></figure></li>
-<li><p>到一个文件夹下初始化hexo环境</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd /path/to/blogs/</span><br><span class="line">hexo init # 此时会clone hexo环境和一个初始化的landscape主题</span><br></pre></td></tr></table></figure>
-<p>有时候可能因为网络限制，出现clone主题失败，这时按照WARN说明先执行<code>npm install</code>安装依赖，然后直接去<a href="https://github.com/hexojs/hexo-theme-landscape" target="_blank" rel="noopener">github</a>下载主题，解压放到<code>./themes</code>文件夹内，并将其重命名为<code>landscape</code>即可。</p>
-<div align=center>
- <img width="800" style="border-radius: 0.3125em;
- box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); 
- margin-right:5px; margin-left:5px; margin-bottom:5px; margin-top:5px" 
- src="/imgs/hexo_init_error.png" alt="confuse matrix"
- > 
- <br>
- <div style="color:orange; border-bottom: 1px solid #d9d9d9;
- display: inline-block;
- color: #999;
- padding: 2px;">图1 npm init错误</div>
-</div>
-
-
-</li>
-</ol>
-<ol start="7">
-<li>开启hexo服务，可以看到一个很基础的博客已经搭建起来了<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo s -p 4001 # -p 可以指定本地端口，具体help可以使用 hexo s --help 查看</span><br></pre></td></tr></table></figure>
-<div align=center>
- <img width="800" style="border-radius: 0.3125em;
- box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); 
- margin-right:5px; margin-left:5px; margin-bottom:5px; margin-top:5px" 
- src="/imgs/hexo_landscape.png" alt="hexo landscape"
- > 
- <br>
- <div style="color:orange; border-bottom: 1px solid #d9d9d9;
- display: inline-block;
- color: #999;
- padding: 2px;">图2 初始化博客页面</div>
-</div>
-
-
-</li>
-</ol>
-<h1 id="next主题安装配置"><a href="#next主题安装配置" class="headerlink" title="next主题安装配置"></a>next主题安装配置</h1><p>默认的landscape主题不怎么好看，这里选择了热度最高的next主题作为博客的主题，因为个人觉得热度最高的主题，维护较好，出现问题也有较多人可以提供解决方案。首先在<a href="https://hexo.io/themes/" target="_blank" rel="noopener">hexo主题官网</a>搜索next主题，跳转到next的<a href="https://github.com/theme-next/hexo-theme-next" target="_blank" rel="noopener">github</a>地址后，下载主图库，解压后同样放在博客目录下的<code>./themes/</code>中，并重命名next主题文件夹为<code>next</code>。<br><strong>注意</strong>：这里有两个配置文件，一个是博客目录下的<code>./_config.yml</code>，另一个是主题目录下的<code>./themes/next/_config.yml</code></p>
-<ol>
-<li><p>修改博客配置文件<code>./_config.yml</code>，将主题设置为<code>next</code></p>
-<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"># 大概在<span class="number">96</span>行，每个版本的hexo配置文件可能不一样</span><br><span class="line"># Extensions</span><br><span class="line">## Plugin<span class="variable">s:</span> http<span class="variable">s:</span>//hexo.io/plugins/</span><br><span class="line">## Theme<span class="variable">s:</span> http<span class="variable">s:</span>//hexo.io/themes/</span><br><span class="line">theme: landscape</span><br><span class="line"></span><br><span class="line"># 修改为</span><br><span class="line"># Extensions</span><br><span class="line">## Plugin<span class="variable">s:</span> http<span class="variable">s:</span>//hexo.io/plugins/</span><br><span class="line">## Theme<span class="variable">s:</span> http<span class="variable">s:</span>//hexo.io/themes/</span><br><span class="line">theme: <span class="keyword">next</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>重新开启hexo服务</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo s -p 4001 # 需要把原来的服务杀掉，否则报端口被占用错误</span><br></pre></td></tr></table></figure>
-<div align=center>
- <img width="800" style="border-radius: 0.3125em;
- box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); 
- margin-right:5px; margin-left:5px; margin-bottom:5px; margin-top:5px" 
- src="/imgs/hexo_next1.png" alt="hexo next 1"
- > 
- <br>
- <div style="color:orange; border-bottom: 1px solid #d9d9d9;
- display: inline-block;
- color: #999;
- padding: 2px;">图3 hexo-next初始化界面</div>
-</div>
-
-
-</li>
-</ol>
-<h1 id="博客优化"><a href="#博客优化" class="headerlink" title="博客优化"></a>博客优化</h1><h2 id="基础配置"><a href="#基础配置" class="headerlink" title="基础配置"></a>基础配置</h2><p>基础配置只要修改两个配置文件 <code>./_config.yml</code>和<code>./themes/next/_config.yml</code>.</p>
-<ol>
-<li><p>配置主页<code>Site</code>内容：打开博客配置文件 <code>./_config.yml</code>， 修改相应内容</p>
-<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"># Site</span><br><span class="line">title: Hexo_test # 主页标题配置</span><br><span class="line">subtitle: Hexo_test_subtitle # 主页副标题配置</span><br><span class="line">description: <span class="string">'this is a hexo test'</span> # 主页描述</span><br><span class="line">keyword<span class="variable">s:</span> </span><br><span class="line">author: <span class="string">"Hexo tester"</span> # 主页作者</span><br><span class="line">languate:  zh-CN # 主页语言设置，更多语言可以查看 ./themes/<span class="keyword">next</span>/languages 中的语言配置文件</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>配置主页的icon：打开主题配置文件<code>./themes/next/_config.yml</code>，icon保存在博客路径的 ./public/images，将相应的icon复制到此目录下，并将配置文件中的文件名字修改为文件夹内文件的名字即可</p>
-<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">favicon:</span><br><span class="line">  smal<span class="variable">l:</span> /images/favicon-<span class="number">16</span>x16-<span class="keyword">next</span>.png </span><br><span class="line">  medium: /images/favicon-<span class="number">32</span>x32-<span class="keyword">next</span>.png</span><br><span class="line">  apple_touch_icon: /images/apple-touch-icon-<span class="keyword">next</span>.png</span><br><span class="line">  safari_pinned_ta<span class="variable">b:</span> /images/logo.svg</span><br><span class="line">  #android_manifes<span class="variable">t:</span> /images/manifest.json</span><br><span class="line">  #ms_browserconfi<span class="variable">g:</span> /images/browserconfig.xml</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>去除博客底部的<code>由 Hexo &amp; NexT.Muse 强力驱动</code>：打开主题配置文件<code>./themes/next/_config.yml</code></p>
-<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"># Powered by Hexo &amp; NexT</span><br><span class="line">powered: false</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>添加<code>since xxxx year</code>，否则默认是当年：打开主题配置文件<code>./themes/next/_config.yml</code></p>
-<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">since: <span class="number">2020</span></span><br></pre></td></tr></table></figure></li>
-<li><p>博客底部小icon设置（默认是红心）：从<a href="https://fontawesome.com/icons" target="_blank" rel="noopener">Font Awesom</a>找一个喜欢的icon，打开主题配置文件<code>./themes/next/_config.yml</code></p>
-<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"># Icon between year <span class="built_in">and</span> copyright info.</span><br><span class="line">icon:</span><br><span class="line">  #Icon name in Font Awesome. See: http<span class="variable">s:</span>//fontawesome.<span class="keyword">com</span>/icons</span><br><span class="line">  name: fa fa-heartbeat</span><br><span class="line">  # If you want <span class="keyword">to</span> animate the icon, <span class="keyword">set</span> it <span class="keyword">to</span> true.</span><br><span class="line">  animated: true</span><br><span class="line">  # Change the color of icon, using Hex Code.</span><br><span class="line">  color: <span class="string">"#ff0000"</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>copyright设置</p>
-<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"># If not defined, `author` from Hexo `_config.yml` will <span class="keyword">be</span> used. 默认是author</span><br><span class="line">copyrigh<span class="variable">t:</span> hexo test</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>scheme设置，这里选择了Pisces</p>
-<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"># Schemes</span><br><span class="line">#scheme: Muse</span><br><span class="line">#scheme: Mist</span><br><span class="line">scheme: Pisces</span><br><span class="line">#scheme: Gemini</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>配置暗黑模型</p>
-<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">darkmode: true</span><br></pre></td></tr></table></figure></li>
-<li><p>配置主页菜单</p>
-<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"><span class="keyword">menu</span>:</span><br><span class="line">  home: / || fa fa-home</span><br><span class="line">  abou<span class="variable">t:</span> /about/ || fa fa-user</span><br><span class="line">  <span class="keyword">tag</span><span class="variable">s:</span> /<span class="keyword">tags</span>/ || fa fa-<span class="keyword">tags</span></span><br><span class="line">  categorie<span class="variable">s:</span> /categories/ || fa fa-<span class="keyword">th</span></span><br><span class="line">  archive<span class="variable">s:</span> /archives/ || fa fa-archive</span><br><span class="line">  #schedule: /schedule/ || fa fa-calendar</span><br><span class="line">  #sitemap: /sitemap.xml || fa fa-sitemap</span><br><span class="line">  #commonwea<span class="variable">l:</span> /<span class="number">404</span>/ || fa fa-heartbeat</span><br><span class="line">  </span><br><span class="line">menu_setting<span class="variable">s:</span></span><br><span class="line">  icon<span class="variable">s:</span> true # 显示图标</span><br><span class="line">  badge<span class="variable">s:</span> true # 显示数量</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>侧边栏配置</p>
-<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">sidebar:</span><br><span class="line">  # Sidebar Position.</span><br><span class="line">  position: <span class="keyword">left</span></span><br><span class="line">  #position: <span class="keyword">right</span></span><br><span class="line"></span><br><span class="line">  # Manual define the sidebar width. If commented, will <span class="keyword">be</span> default <span class="keyword">for</span>:</span><br><span class="line">  # Muse | Mis<span class="variable">t:</span> <span class="number">320</span></span><br><span class="line">  # Pisces | Gemini: <span class="number">240</span></span><br><span class="line">  width: <span class="number">240</span></span><br><span class="line"></span><br><span class="line">  # Sidebar Display (<span class="keyword">only</span> <span class="keyword">for</span> Muse | Mist), available value<span class="variable">s:</span></span><br><span class="line">  #  - post    <span class="built_in">expand</span> <span class="keyword">on</span> posts automatically. Default.</span><br><span class="line">  #  - always  <span class="built_in">expand</span> <span class="keyword">for</span> <span class="keyword">all</span> pages automatically.</span><br><span class="line">  #  - <span class="keyword">hide</span>    <span class="built_in">expand</span> <span class="keyword">only</span> when click <span class="keyword">on</span> the sidebar toggle icon.</span><br><span class="line">  #  - <span class="built_in">remove</span>  totally <span class="built_in">remove</span> sidebar including sidebar toggle.</span><br><span class="line">  <span class="keyword">display</span>: post</span><br><span class="line"></span><br><span class="line">  # Sidebar padding in pixels.</span><br><span class="line">  paddin<span class="variable">g:</span> <span class="number">18</span></span><br><span class="line">  # Sidebar offset from top menubar in pixels (<span class="keyword">only</span> <span class="keyword">for</span> Pisces | Gemini).</span><br><span class="line">  offse<span class="variable">t:</span> <span class="number">12</span></span><br><span class="line">  # Enable sidebar <span class="keyword">on</span> narrow <span class="keyword">view</span> (<span class="keyword">only</span> <span class="keyword">for</span> Muse | Mist).</span><br><span class="line">  onmobile: false</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>侧边栏头像设置</p>
-<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"># Sidebar Avatar</span><br><span class="line">avatar:</span><br><span class="line">  # 图像地址，可以是在线图像，也可以是保存在 ./public/images/ 里面的图像</span><br><span class="line">  ur<span class="variable">l:</span>  #/images/avatar.gif  # </span><br><span class="line">  # 是否圆形头像</span><br><span class="line">  rounded: true</span><br><span class="line">  # 是否旋转</span><br><span class="line">  rotated: true</span><br><span class="line"></span><br><span class="line"># Posts / Categories / Tags in sidebar.</span><br><span class="line">site_state: true</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>设置侧边栏社交</p>
-<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">socia<span class="variable">l:</span></span><br><span class="line">  GitHu<span class="variable">b:</span> http<span class="variable">s:</span>//github.<span class="keyword">com</span>/kevin0048 || fab fa-github</span><br><span class="line">  E-Mai<span class="variable">l:</span> mailto:wzhu0048@gmail.<span class="keyword">com</span> || fa fa-envelope</span><br><span class="line">  #Weibo: http<span class="variable">s:</span>//weibo.<span class="keyword">com</span>/yourname || fab fa-weibo</span><br><span class="line">  #Google: http<span class="variable">s:</span>//plus.google.<span class="keyword">com</span>/yourname || fab fa-google</span><br><span class="line">  #Twitter: http<span class="variable">s:</span>//twitter.<span class="keyword">com</span>/yourname || fab fa-twitter</span><br><span class="line">  #FB Page: http<span class="variable">s:</span>//www.facebook.<span class="keyword">com</span>/yourname || fab fa-facebook</span><br><span class="line">  #StackOverflo<span class="variable">w:</span> http<span class="variable">s:</span>//stackoverflow.<span class="keyword">com</span>/yourname || fab fa-stack-overflow</span><br><span class="line">  #YouTube: http<span class="variable">s:</span>//youtube.<span class="keyword">com</span>/yourname || fab fa-youtube</span><br><span class="line">  #Instagram: http<span class="variable">s:</span>//instagram.<span class="keyword">com</span>/yourname || fab fa-instagram</span><br><span class="line">  #Skype: skype:yourname?<span class="keyword">call</span>|chat || fab fa-skype</span><br><span class="line">  知乎: http<span class="variable">s:</span>//www.zhihu.<span class="keyword">com</span>/people/kevin0048 || fab fa-zhihu</span><br><span class="line"></span><br><span class="line">social_icon<span class="variable">s:</span></span><br><span class="line">  enable: true</span><br><span class="line">  icons_only: true</span><br><span class="line">  transition: false</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>侧边栏章节目录设置</p>
-<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">toc:</span><br><span class="line">  enable: true # 是否显示章节目录</span><br><span class="line">  <span class="keyword">number</span>: true # 是否显示章节序号</span><br><span class="line">  wrap: true # 标题过长是否换行</span><br><span class="line">  expand_al<span class="variable">l:</span> false # 是否显示所有的章节</span><br><span class="line">  max_depth: <span class="number">6</span> # 最大深度</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>打赏配置</p>
-<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">reward_setting<span class="variable">s:</span></span><br><span class="line">  enable: true</span><br><span class="line">  animation: true</span><br><span class="line">  commen<span class="variable">t:</span> 您的支持将鼓励我继续创作.</span><br><span class="line"></span><br><span class="line">reward:</span><br><span class="line">  wechatpay: /images/wechatpay.jpg # 图像保存在 ./public/images/</span><br><span class="line">  alipay: /images/alipay.jpg</span><br><span class="line">  #paypa<span class="variable">l:</span> /images/paypal.png</span><br><span class="line">  #bitcoin: /images/bitcoin.png</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>配置follow me，把相应的网址改为你的渠道网址</p>
-<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">follow_me:</span><br><span class="line">  #Twitter: http<span class="variable">s:</span>//twitter.<span class="keyword">com</span>/username || fab fa-twitter</span><br><span class="line">  #Telegram: http<span class="variable">s:</span>//t.<span class="keyword">me</span>/channel_name || fab fa-telegram</span><br><span class="line">  #WeCha<span class="variable">t:</span> /images/wechatpay.jpg || fab fa-weixin</span><br><span class="line">  #RSS: /atom.xml || fa fa-rss</span><br><span class="line">  知乎: http<span class="variable">s:</span>//www.zhihu.<span class="keyword">com</span>/people/kevin0048 || fab fa-zhihu</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>生成tag/categories</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 在博客目录./上执行</span></span><br><span class="line">hexo new page categories</span><br><span class="line">hexo new page tags</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 修改 <span class="built_in">source</span>/categories/index.md， 加上一行 <span class="built_in">type</span>: <span class="string">"categories"</span></span></span><br><span class="line">---</span><br><span class="line">title: categories</span><br><span class="line">date: 2020-04-18 16:31:58</span><br><span class="line">type: "categories"</span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 修改 <span class="built_in">source</span>/tags/index.md，加上一行 <span class="built_in">type</span>: <span class="string">"tags"</span></span></span><br><span class="line">---</span><br><span class="line">title: tags</span><br><span class="line">date: 2020-04-18 16:31:58</span><br><span class="line">type: "tags"</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ol>
-<ol start="17">
-<li>gitub follow-me设置<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">github_banner:</span><br><span class="line">  enable: true</span><br><span class="line">  permalink: http<span class="variable">s:</span>//github.<span class="keyword">com</span>/kevin0048</span><br><span class="line">  title: Follow <span class="keyword">me</span> <span class="keyword">on</span> GitHub</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h2 id="高级设置"><a href="#高级设置" class="headerlink" title="高级设置"></a>高级设置</h2><p>字数、阅读时长配置</p>
-<h3 id="站内搜索"><a href="#站内搜索" class="headerlink" title="站内搜索"></a>站内搜索</h3><h3 id="评论系统"><a href="#评论系统" class="headerlink" title="评论系统"></a>评论系统</h3><h3 id="SEO搜索优化"><a href="#SEO搜索优化" class="headerlink" title="SEO搜索优化"></a>SEO搜索优化</h3><h3 id="github托管"><a href="#github托管" class="headerlink" title="github托管"></a>github托管</h3><h1 id=""><a href="#" class="headerlink" title=""></a></h1><h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1>]]></content>
-      <categories>
-        <category>杂项</category>
-      </categories>
-      <tags>
-        <tag>hexo框架</tag>
-        <tag>next主题</tag>
-        <tag>github博客</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>模型评估方法</title>
     <url>/2020/04/16/%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0%E6%96%B9%E6%B3%95/</url>
     <content><![CDATA[<h1 id="Classification"><a href="#Classification" class="headerlink" title="Classification"></a>Classification</h1><h2 id="混淆矩阵"><a href="#混淆矩阵" class="headerlink" title="混淆矩阵"></a>混淆矩阵</h2><div align=center>
@@ -428,6 +282,152 @@
       <tags>
         <tag>evaluation</tag>
         <tag>machine learning</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>基于hexo、next主题和github的个人博客搭建</title>
+    <url>/2020/04/17/%E5%9F%BA%E4%BA%8Ehexo%E3%80%81next%E4%B8%BB%E9%A2%98%E5%92%8Cgithub%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</url>
+    <content><![CDATA[<p>本教程基于Ubuntu16.04和window10 wsl。</p>
+<h1 id="hexo安装配置"><a href="#hexo安装配置" class="headerlink" title="hexo安装配置"></a>hexo安装配置</h1><ol>
+<li><p>安装npm</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt-get install npm</span><br><span class="line"></span><br><span class="line">npm --version</span><br><span class="line"><span class="meta">#</span><span class="bash"> 3.5.2</span></span><br></pre></td></tr></table></figure></li>
+<li><p>npm换国内源</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm config set registry http://registry.npm.taobao.org/</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装node</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt-get install nodejs-legacy</span><br><span class="line"></span><br><span class="line">node --version</span><br><span class="line"><span class="meta">#</span><span class="bash"> 4.2.6</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>更新node版本</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install -g n # 安装n</span><br><span class="line">n stable # 安装最新稳定版node</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 重启一个shell</span></span><br><span class="line">node --version</span><br><span class="line"><span class="meta">#</span><span class="bash"> v12.16.2</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装hexo</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install -g hexo</span><br><span class="line"></span><br><span class="line">hexo version</span><br><span class="line"><span class="meta">#</span><span class="bash"> hexo-cli: 3.1.0</span></span><br></pre></td></tr></table></figure></li>
+<li><p>到一个文件夹下初始化hexo环境</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd /path/to/blogs/</span><br><span class="line">hexo init # 此时会clone hexo环境和一个初始化的landscape主题</span><br></pre></td></tr></table></figure>
+<p>有时候可能因为网络限制，出现clone主题失败，这时按照WARN说明先执行<code>npm install</code>安装依赖，然后直接去<a href="https://github.com/hexojs/hexo-theme-landscape" target="_blank" rel="noopener">github</a>下载主题，解压放到<code>./themes</code>文件夹内，并将其重命名为<code>landscape</code>即可。</p>
+<div align=center>
+ <img width="800" style="border-radius: 0.3125em;
+ box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); 
+ margin-right:5px; margin-left:5px; margin-bottom:5px; margin-top:5px" 
+ src="/imgs/hexo_init_error.png" alt="confuse matrix"
+ > 
+ <br>
+ <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+ display: inline-block;
+ color: #999;
+ padding: 2px;">图1 npm init错误</div>
+</div>
+
+
+</li>
+</ol>
+<ol start="7">
+<li>开启hexo服务，可以看到一个很基础的博客已经搭建起来了<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo s -p 4001 # -p 可以指定本地端口，具体help可以使用 hexo s --help 查看</span><br></pre></td></tr></table></figure>
+<div align=center>
+ <img width="800" style="border-radius: 0.3125em;
+ box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); 
+ margin-right:5px; margin-left:5px; margin-bottom:5px; margin-top:5px" 
+ src="/imgs/hexo_landscape.png" alt="hexo landscape"
+ > 
+ <br>
+ <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+ display: inline-block;
+ color: #999;
+ padding: 2px;">图2 初始化博客页面</div>
+</div>
+
+
+</li>
+</ol>
+<h1 id="next主题安装配置"><a href="#next主题安装配置" class="headerlink" title="next主题安装配置"></a>next主题安装配置</h1><p>默认的landscape主题不怎么好看，这里选择了热度最高的next主题作为博客的主题，因为个人觉得热度最高的主题，维护较好，出现问题也有较多人可以提供解决方案。首先在<a href="https://hexo.io/themes/" target="_blank" rel="noopener">hexo主题官网</a>搜索next主题，跳转到next的<a href="https://github.com/theme-next/hexo-theme-next" target="_blank" rel="noopener">github</a>地址后，下载主图库，解压后同样放在博客目录下的<code>./themes/</code>中，并重命名next主题文件夹为<code>next</code>。<br><strong>注意</strong>：这里有两个配置文件，一个是博客目录下的<code>./_config.yml</code>，另一个是主题目录下的<code>./themes/next/_config.yml</code></p>
+<ol>
+<li><p>修改博客配置文件<code>./_config.yml</code>，将主题设置为<code>next</code></p>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"># 大概在<span class="number">96</span>行，每个版本的hexo配置文件可能不一样</span><br><span class="line"># Extensions</span><br><span class="line">## Plugin<span class="variable">s:</span> http<span class="variable">s:</span>//hexo.io/plugins/</span><br><span class="line">## Theme<span class="variable">s:</span> http<span class="variable">s:</span>//hexo.io/themes/</span><br><span class="line">theme: landscape</span><br><span class="line"></span><br><span class="line"># 修改为</span><br><span class="line"># Extensions</span><br><span class="line">## Plugin<span class="variable">s:</span> http<span class="variable">s:</span>//hexo.io/plugins/</span><br><span class="line">## Theme<span class="variable">s:</span> http<span class="variable">s:</span>//hexo.io/themes/</span><br><span class="line">theme: <span class="keyword">next</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重新开启hexo服务</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo s -p 4001 # 需要把原来的服务杀掉，否则报端口被占用错误</span><br></pre></td></tr></table></figure>
+<div align=center>
+ <img width="800" style="border-radius: 0.3125em;
+ box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); 
+ margin-right:5px; margin-left:5px; margin-bottom:5px; margin-top:5px" 
+ src="/imgs/hexo_next1.png" alt="hexo next 1"
+ > 
+ <br>
+ <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+ display: inline-block;
+ color: #999;
+ padding: 2px;">图3 hexo-next初始化界面</div>
+</div>
+
+
+</li>
+</ol>
+<h1 id="博客优化"><a href="#博客优化" class="headerlink" title="博客优化"></a>博客优化</h1><h2 id="基础配置"><a href="#基础配置" class="headerlink" title="基础配置"></a>基础配置</h2><p>基础配置只要修改两个配置文件 <code>./_config.yml</code>和<code>./themes/next/_config.yml</code>.</p>
+<ol>
+<li><p>配置主页<code>Site</code>内容：打开博客配置文件 <code>./_config.yml</code>， 修改相应内容</p>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"># Site</span><br><span class="line">title: Hexo_test # 主页标题配置</span><br><span class="line">subtitle: Hexo_test_subtitle # 主页副标题配置</span><br><span class="line">description: <span class="string">'this is a hexo test'</span> # 主页描述</span><br><span class="line">keyword<span class="variable">s:</span> </span><br><span class="line">author: <span class="string">"Hexo tester"</span> # 主页作者</span><br><span class="line">languate:  zh-CN # 主页语言设置，更多语言可以查看 ./themes/<span class="keyword">next</span>/languages 中的语言配置文件</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置主页的icon：打开主题配置文件<code>./themes/next/_config.yml</code>，icon保存在博客路径的 ./public/images，将相应的icon复制到此目录下，并将配置文件中的文件名字修改为文件夹内文件的名字即可</p>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">favicon:</span><br><span class="line">  smal<span class="variable">l:</span> /images/favicon-<span class="number">16</span>x16-<span class="keyword">next</span>.png </span><br><span class="line">  medium: /images/favicon-<span class="number">32</span>x32-<span class="keyword">next</span>.png</span><br><span class="line">  apple_touch_icon: /images/apple-touch-icon-<span class="keyword">next</span>.png</span><br><span class="line">  safari_pinned_ta<span class="variable">b:</span> /images/logo.svg</span><br><span class="line">  #android_manifes<span class="variable">t:</span> /images/manifest.json</span><br><span class="line">  #ms_browserconfi<span class="variable">g:</span> /images/browserconfig.xml</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>去除博客底部的<code>由 Hexo &amp; NexT.Muse 强力驱动</code>：打开主题配置文件<code>./themes/next/_config.yml</code></p>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"># Powered by Hexo &amp; NexT</span><br><span class="line">powered: false</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加<code>since xxxx year</code>，否则默认是当年：打开主题配置文件<code>./themes/next/_config.yml</code></p>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">since: <span class="number">2020</span></span><br></pre></td></tr></table></figure></li>
+<li><p>博客底部小icon设置（默认是红心）：从<a href="https://fontawesome.com/icons" target="_blank" rel="noopener">Font Awesom</a>找一个喜欢的icon，打开主题配置文件<code>./themes/next/_config.yml</code></p>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"># Icon between year <span class="built_in">and</span> copyright info.</span><br><span class="line">icon:</span><br><span class="line">  #Icon name in Font Awesome. See: http<span class="variable">s:</span>//fontawesome.<span class="keyword">com</span>/icons</span><br><span class="line">  name: fa fa-heartbeat</span><br><span class="line">  # If you want <span class="keyword">to</span> animate the icon, <span class="keyword">set</span> it <span class="keyword">to</span> true.</span><br><span class="line">  animated: true</span><br><span class="line">  # Change the color of icon, using Hex Code.</span><br><span class="line">  color: <span class="string">"#ff0000"</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>copyright设置</p>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"># If not defined, `author` from Hexo `_config.yml` will <span class="keyword">be</span> used. 默认是author</span><br><span class="line">copyrigh<span class="variable">t:</span> hexo test</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>scheme设置，这里选择了Pisces</p>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"># Schemes</span><br><span class="line">#scheme: Muse</span><br><span class="line">#scheme: Mist</span><br><span class="line">scheme: Pisces</span><br><span class="line">#scheme: Gemini</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置暗黑模型</p>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">darkmode: true</span><br></pre></td></tr></table></figure></li>
+<li><p>配置主页菜单</p>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"><span class="keyword">menu</span>:</span><br><span class="line">  home: / || fa fa-home</span><br><span class="line">  abou<span class="variable">t:</span> /about/ || fa fa-user</span><br><span class="line">  <span class="keyword">tag</span><span class="variable">s:</span> /<span class="keyword">tags</span>/ || fa fa-<span class="keyword">tags</span></span><br><span class="line">  categorie<span class="variable">s:</span> /categories/ || fa fa-<span class="keyword">th</span></span><br><span class="line">  archive<span class="variable">s:</span> /archives/ || fa fa-archive</span><br><span class="line">  #schedule: /schedule/ || fa fa-calendar</span><br><span class="line">  #sitemap: /sitemap.xml || fa fa-sitemap</span><br><span class="line">  #commonwea<span class="variable">l:</span> /<span class="number">404</span>/ || fa fa-heartbeat</span><br><span class="line">  </span><br><span class="line">menu_setting<span class="variable">s:</span></span><br><span class="line">  icon<span class="variable">s:</span> true # 显示图标</span><br><span class="line">  badge<span class="variable">s:</span> true # 显示数量</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>侧边栏配置</p>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">sidebar:</span><br><span class="line">  # Sidebar Position.</span><br><span class="line">  position: <span class="keyword">left</span></span><br><span class="line">  #position: <span class="keyword">right</span></span><br><span class="line"></span><br><span class="line">  # Manual define the sidebar width. If commented, will <span class="keyword">be</span> default <span class="keyword">for</span>:</span><br><span class="line">  # Muse | Mis<span class="variable">t:</span> <span class="number">320</span></span><br><span class="line">  # Pisces | Gemini: <span class="number">240</span></span><br><span class="line">  width: <span class="number">240</span></span><br><span class="line"></span><br><span class="line">  # Sidebar Display (<span class="keyword">only</span> <span class="keyword">for</span> Muse | Mist), available value<span class="variable">s:</span></span><br><span class="line">  #  - post    <span class="built_in">expand</span> <span class="keyword">on</span> posts automatically. Default.</span><br><span class="line">  #  - always  <span class="built_in">expand</span> <span class="keyword">for</span> <span class="keyword">all</span> pages automatically.</span><br><span class="line">  #  - <span class="keyword">hide</span>    <span class="built_in">expand</span> <span class="keyword">only</span> when click <span class="keyword">on</span> the sidebar toggle icon.</span><br><span class="line">  #  - <span class="built_in">remove</span>  totally <span class="built_in">remove</span> sidebar including sidebar toggle.</span><br><span class="line">  <span class="keyword">display</span>: post</span><br><span class="line"></span><br><span class="line">  # Sidebar padding in pixels.</span><br><span class="line">  paddin<span class="variable">g:</span> <span class="number">18</span></span><br><span class="line">  # Sidebar offset from top menubar in pixels (<span class="keyword">only</span> <span class="keyword">for</span> Pisces | Gemini).</span><br><span class="line">  offse<span class="variable">t:</span> <span class="number">12</span></span><br><span class="line">  # Enable sidebar <span class="keyword">on</span> narrow <span class="keyword">view</span> (<span class="keyword">only</span> <span class="keyword">for</span> Muse | Mist).</span><br><span class="line">  onmobile: false</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>侧边栏头像设置</p>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"># Sidebar Avatar</span><br><span class="line">avatar:</span><br><span class="line">  # 图像地址，可以是在线图像，也可以是保存在 ./public/images/ 里面的图像</span><br><span class="line">  ur<span class="variable">l:</span>  #/images/avatar.gif  # </span><br><span class="line">  # 是否圆形头像</span><br><span class="line">  rounded: true</span><br><span class="line">  # 是否旋转</span><br><span class="line">  rotated: true</span><br><span class="line"></span><br><span class="line"># Posts / Categories / Tags in sidebar.</span><br><span class="line">site_state: true</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设置侧边栏社交</p>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">socia<span class="variable">l:</span></span><br><span class="line">  GitHu<span class="variable">b:</span> http<span class="variable">s:</span>//github.<span class="keyword">com</span>/kevin0048 || fab fa-github</span><br><span class="line">  E-Mai<span class="variable">l:</span> mailto:wzhu0048@gmail.<span class="keyword">com</span> || fa fa-envelope</span><br><span class="line">  #Weibo: http<span class="variable">s:</span>//weibo.<span class="keyword">com</span>/yourname || fab fa-weibo</span><br><span class="line">  #Google: http<span class="variable">s:</span>//plus.google.<span class="keyword">com</span>/yourname || fab fa-google</span><br><span class="line">  #Twitter: http<span class="variable">s:</span>//twitter.<span class="keyword">com</span>/yourname || fab fa-twitter</span><br><span class="line">  #FB Page: http<span class="variable">s:</span>//www.facebook.<span class="keyword">com</span>/yourname || fab fa-facebook</span><br><span class="line">  #StackOverflo<span class="variable">w:</span> http<span class="variable">s:</span>//stackoverflow.<span class="keyword">com</span>/yourname || fab fa-stack-overflow</span><br><span class="line">  #YouTube: http<span class="variable">s:</span>//youtube.<span class="keyword">com</span>/yourname || fab fa-youtube</span><br><span class="line">  #Instagram: http<span class="variable">s:</span>//instagram.<span class="keyword">com</span>/yourname || fab fa-instagram</span><br><span class="line">  #Skype: skype:yourname?<span class="keyword">call</span>|chat || fab fa-skype</span><br><span class="line">  知乎: http<span class="variable">s:</span>//www.zhihu.<span class="keyword">com</span>/people/kevin0048 || fab fa-zhihu</span><br><span class="line"></span><br><span class="line">social_icon<span class="variable">s:</span></span><br><span class="line">  enable: true</span><br><span class="line">  icons_only: true</span><br><span class="line">  transition: false</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>侧边栏章节目录设置</p>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">toc:</span><br><span class="line">  enable: true # 是否显示章节目录</span><br><span class="line">  <span class="keyword">number</span>: true # 是否显示章节序号</span><br><span class="line">  wrap: true # 标题过长是否换行</span><br><span class="line">  expand_al<span class="variable">l:</span> false # 是否显示所有的章节</span><br><span class="line">  max_depth: <span class="number">6</span> # 最大深度</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>打赏配置</p>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">reward_setting<span class="variable">s:</span></span><br><span class="line">  enable: true</span><br><span class="line">  animation: true</span><br><span class="line">  commen<span class="variable">t:</span> 您的支持将鼓励我继续创作.</span><br><span class="line"></span><br><span class="line">reward:</span><br><span class="line">  wechatpay: /images/wechatpay.jpg # 图像保存在 ./public/images/</span><br><span class="line">  alipay: /images/alipay.jpg</span><br><span class="line">  #paypa<span class="variable">l:</span> /images/paypal.png</span><br><span class="line">  #bitcoin: /images/bitcoin.png</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置follow me，把相应的网址改为你的渠道网址</p>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">follow_me:</span><br><span class="line">  #Twitter: http<span class="variable">s:</span>//twitter.<span class="keyword">com</span>/username || fab fa-twitter</span><br><span class="line">  #Telegram: http<span class="variable">s:</span>//t.<span class="keyword">me</span>/channel_name || fab fa-telegram</span><br><span class="line">  #WeCha<span class="variable">t:</span> /images/wechatpay.jpg || fab fa-weixin</span><br><span class="line">  #RSS: /atom.xml || fa fa-rss</span><br><span class="line">  知乎: http<span class="variable">s:</span>//www.zhihu.<span class="keyword">com</span>/people/kevin0048 || fab fa-zhihu</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>生成tag/categories</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 在博客目录./上执行</span></span><br><span class="line">hexo new page categories</span><br><span class="line">hexo new page tags</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 修改 <span class="built_in">source</span>/categories/index.md， 加上一行 <span class="built_in">type</span>: <span class="string">"categories"</span></span></span><br><span class="line">---</span><br><span class="line">title: categories</span><br><span class="line">date: 2020-04-18 16:31:58</span><br><span class="line">type: "categories"</span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 修改 <span class="built_in">source</span>/tags/index.md，加上一行 <span class="built_in">type</span>: <span class="string">"tags"</span></span></span><br><span class="line">---</span><br><span class="line">title: tags</span><br><span class="line">date: 2020-04-18 16:31:58</span><br><span class="line">type: "tags"</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="17">
+<li>gitub follow-me设置<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">github_banner:</span><br><span class="line">  enable: true</span><br><span class="line">  permalink: http<span class="variable">s:</span>//github.<span class="keyword">com</span>/kevin0048</span><br><span class="line">  title: Follow <span class="keyword">me</span> <span class="keyword">on</span> GitHub</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="高级设置"><a href="#高级设置" class="headerlink" title="高级设置"></a>高级设置</h2><p>字数、阅读时长配置</p>
+<h3 id="站内搜索"><a href="#站内搜索" class="headerlink" title="站内搜索"></a>站内搜索</h3><h3 id="评论系统"><a href="#评论系统" class="headerlink" title="评论系统"></a>评论系统</h3><h3 id="SEO搜索优化"><a href="#SEO搜索优化" class="headerlink" title="SEO搜索优化"></a>SEO搜索优化</h3><h3 id="github托管"><a href="#github托管" class="headerlink" title="github托管"></a>github托管</h3><h1 id=""><a href="#" class="headerlink" title=""></a></h1><h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1>]]></content>
+      <categories>
+        <category>杂项</category>
+      </categories>
+      <tags>
+        <tag>hexo框架</tag>
+        <tag>next主题</tag>
+        <tag>github博客</tag>
       </tags>
   </entry>
 </search>
